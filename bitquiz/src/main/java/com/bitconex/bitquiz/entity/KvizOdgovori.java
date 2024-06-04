@@ -18,9 +18,9 @@ public class KvizOdgovori {
     private String tekst;
 
     @Column(name = "odgovor_tacan")
-    private String odgovorTacan;
+    private boolean odgovorTacan;
 
     @ManyToOne
-    @JoinColumn(name = "pitanja_id")
+    @JoinColumn(name = "pitanje_id")
     private KvizPitanja pitanja;
 }

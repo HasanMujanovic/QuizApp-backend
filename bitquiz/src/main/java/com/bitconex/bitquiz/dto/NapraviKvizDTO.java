@@ -10,8 +10,8 @@ import java.util.List;
 
 @Getter
 @Setter
-public class NapraviKviz {
+public class NapraviKvizDTO {
     Kviz kviz;
     List<KvizPitanja> kvizPitanja;
-    List<KvizOdgovori> kvizOdgovori;
+    List<KvizOdgovori[]> kvizOdgovori;
 }

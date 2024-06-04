@@ -1,8 +1,8 @@
 package com.bitconex.bitquiz.services;
 
-import com.bitconex.bitquiz.dto.NapraviKviz;
+import com.bitconex.bitquiz.dto.NapraviKvizDTO;
 
 public interface NapraviKvizService {
-    void napraviKviz(NapraviKviz napraviKviz);
+    void napraviKviz(NapraviKvizDTO napraviKvizDTO);
 
 }

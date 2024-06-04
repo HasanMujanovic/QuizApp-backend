@@ -28,13 +28,16 @@ public class KvizPitanja {
     @OneToMany(mappedBy = "pitanja", cascade = CascadeType.ALL)
     private List<KvizOdgovori> odgovori = new ArrayList<>();
 
-    public void add(KvizOdgovori kvizOdgovori){
+    public void add(KvizOdgovori[] kvizOdgovori){
         if (kvizOdgovori != null) {
             if (odgovori == null) {
                 odgovori = new ArrayList<>();
             }
-            odgovori.add(kvizOdgovori);
-            kvizOdgovori.setPitanja(this);
+            for (KvizOdgovori value : kvizOdgovori) {
+                odgovori.add(value);
+                value.setPitanja(this);
+
+            }
         }
     }
 }

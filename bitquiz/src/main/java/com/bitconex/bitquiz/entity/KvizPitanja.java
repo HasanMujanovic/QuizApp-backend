@@ -20,6 +20,12 @@ public class KvizPitanja {
     @Column(name = "tekst")
     private String tekst;
 
+    @Column(name = "bodovi")
+    private int bodovi;
+
+    @Column(name = "dozvoljena_pomoc")
+    private boolean pomoc;
+
 
     @ManyToOne
     @JoinColumn(name = "kviz_id")

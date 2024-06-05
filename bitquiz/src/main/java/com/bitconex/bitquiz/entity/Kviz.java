@@ -35,6 +35,12 @@ public class Kviz {
     @Column(name = "zavrsili")
     private int zavrsili;
 
+    @Column(name = "vreme")
+    private int vreme;
+
+    @Column(name = "bodovi")
+    private int bodovi;
+
     @OneToMany(mappedBy = "kviz", cascade = CascadeType.ALL)
     private List<KvizPitanja> pitanja = new ArrayList<>();
 

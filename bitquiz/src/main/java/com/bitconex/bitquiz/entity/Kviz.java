@@ -47,6 +47,9 @@ public class Kviz {
     @OneToMany(mappedBy = "kvizEnd", cascade = CascadeType.ALL)
     private List<ZavrsenKviz> zavrsenKviz = new ArrayList<>();
 
+    @OneToMany(mappedBy = "kvizSaved", cascade = CascadeType.ALL)
+    private List<KvizProgres> kvizProgres = new ArrayList<>();
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -71,5 +74,16 @@ public class Kviz {
             item.setKvizEnd(this);
         }
     }
+
+    public void addSavedKviz(KvizProgres item){
+        if (item != null){
+            if(kvizProgres == null){
+                kvizProgres = new ArrayList<>();
+            }
+            kvizProgres.add(item);
+            item.setKvizSaved(this);
+        }
+    }
+
 
 }

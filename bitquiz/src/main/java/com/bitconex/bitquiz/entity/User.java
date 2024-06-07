@@ -41,6 +41,9 @@ public class User {
     @OneToMany(mappedBy = "userEnd", cascade = CascadeType.ALL)
     private List<ZavrsenKviz> zavrsenKviz = new ArrayList<>();
 
+    @OneToMany(mappedBy = "userSaved", cascade = CascadeType.ALL)
+    private List<KvizProgres> kvizProgres = new ArrayList<>();
+
 
     public void add(Kviz item){
         if (item != null){
@@ -59,6 +62,16 @@ public class User {
             }
             zavrsenKviz.add(item);
             item.setUserEnd(this);
+        }
+    }
+
+    public void addSavedKviz(KvizProgres item){
+        if (item != null){
+            if(kvizProgres == null){
+                kvizProgres = new ArrayList<>();
+            }
+            kvizProgres.add(item);
+            item.setUserSaved(this);
         }
     }
 

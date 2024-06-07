@@ -44,6 +44,9 @@ public class Kviz {
     @OneToMany(mappedBy = "kviz", cascade = CascadeType.ALL)
     private List<KvizPitanja> pitanja = new ArrayList<>();
 
+    @OneToMany(mappedBy = "kvizEnd", cascade = CascadeType.ALL)
+    private List<ZavrsenKviz> zavrsenKviz = new ArrayList<>();
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -56,6 +59,16 @@ public class Kviz {
             }
             pitanja.add(item);
             item.setKviz(this);
+        }
+    }
+
+    public void addZavrsenKviz(ZavrsenKviz item){
+        if (item != null){
+            if(zavrsenKviz == null){
+                zavrsenKviz = new ArrayList<>();
+            }
+            zavrsenKviz.add(item);
+            item.setKvizEnd(this);
         }
     }
 

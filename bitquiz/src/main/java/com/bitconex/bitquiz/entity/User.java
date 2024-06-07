@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "user")
 @Getter
@@ -32,6 +35,19 @@ public class User {
     @Column(name = "bodovi")
     private int bodovi;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Kviz> kvizovi = new ArrayList<>();
+
+
+    public void add(Kviz item){
+        if (item != null){
+            if(kvizovi == null){
+                kvizovi = new ArrayList<>();
+            }
+            kvizovi.add(item);
+            item.setUser(this);
+        }
+    }
 
 
 

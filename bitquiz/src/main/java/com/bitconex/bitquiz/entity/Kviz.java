@@ -44,6 +44,11 @@ public class Kviz {
     @OneToMany(mappedBy = "kviz", cascade = CascadeType.ALL)
     private List<KvizPitanja> pitanja = new ArrayList<>();
 
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public void add(KvizPitanja item){
         if (item != null){
             if(pitanja == null){

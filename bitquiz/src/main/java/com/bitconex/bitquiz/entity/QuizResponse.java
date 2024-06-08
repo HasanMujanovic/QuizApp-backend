@@ -5,22 +5,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "kviz_odgovori")
+@Table(name = "quiz_response")
 @Getter
 @Setter
-public class KvizOdgovori {
+public class QuizResponse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
-    @Column(name = "tekst")
-    private String tekst;
+    @Column(name = "text")
+    private String text;
 
-    @Column(name = "odgovor_tacan")
-    private boolean odgovorTacan;
+    @Column(name = "response_true")
+    private boolean correctAnswer;
 
     @ManyToOne
-    @JoinColumn(name = "pitanje_id")
-    private KvizPitanja pitanja;
+    @JoinColumn(name = "question_id")
+    private QuizQuestions questions;
 }

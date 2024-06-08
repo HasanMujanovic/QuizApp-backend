@@ -8,33 +8,33 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "zavrsen_kviz")
+@Table(name = "done_quiz")
 @Getter
 @Setter
-public class ZavrsenKviz {
+public class DoneQuiz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @Column(name = "osvojeni_bodovi")
-    private int osvojeniBodovi;
+    @Column(name = "points_won")
+    private int pointsWon;
 
-    @Column(name = "preostalo_vreme")
-    private int preostaloVreme;
+    @Column(name = "time_left")
+    private int timeLeft;
 
-    @Column(name = "datum_zavrsetka")
+    @Column(name = "date_of_finishing")
     @CreationTimestamp
-    private Date datumZavrsetka;
+    private Date dateOfFinishing;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User userEnd;
 
     @ManyToOne
-    @JoinColumn(name = "kviz_id")
-    private Kviz kvizEnd;
+    @JoinColumn(name = "quiz_id")
+    private Quiz quizEnd;
 
 
 

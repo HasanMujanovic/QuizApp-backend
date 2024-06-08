@@ -17,55 +17,55 @@ public class User {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "ime")
-    private String ime;
+    @Column(name = "username")
+    private String name;
 
     @Column(name = "email")
     private String email;
 
-    @Column(name = "sifra")
-    private String sifra;
+    @Column(name = "password")
+    private String password;
 
     @Column(name = "roles")
     private String roles;
 
-    @Column(name = "nivo")
-    private int nivo;
+    @Column(name = "level")
+    private int level;
 
-    @Column(name = "bodovi")
-    private int bodovi;
+    @Column(name = "points")
+    private int points;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Kviz> kvizovi = new ArrayList<>();
+    private List<Quiz> quizzes = new ArrayList<>();
 
     @OneToMany(mappedBy = "userEnd", cascade = CascadeType.ALL)
-    private List<ZavrsenKviz> zavrsenKviz = new ArrayList<>();
+    private List<DoneQuiz> doneQuiz = new ArrayList<>();
 
     @OneToMany(mappedBy = "userSaved", cascade = CascadeType.ALL)
-    private List<KvizProgres> kvizProgres = new ArrayList<>();
+    private List<QuizProgress> kvizProgres = new ArrayList<>();
 
 
-    public void add(Kviz item){
+    public void add(Quiz item){
         if (item != null){
-            if(kvizovi == null){
-                kvizovi = new ArrayList<>();
+            if(quizzes == null){
+                quizzes = new ArrayList<>();
             }
-            kvizovi.add(item);
+            quizzes.add(item);
             item.setUser(this);
         }
     }
 
-    public void addZavrsenKviz(ZavrsenKviz item){
+    public void addZavrsenKviz(DoneQuiz item){
         if (item != null){
-            if(zavrsenKviz == null){
-                zavrsenKviz = new ArrayList<>();
+            if(doneQuiz == null){
+                doneQuiz = new ArrayList<>();
             }
-            zavrsenKviz.add(item);
+            doneQuiz.add(item);
             item.setUserEnd(this);
         }
     }
 
-    public void addSavedKviz(KvizProgres item){
+    public void addSavedKviz(QuizProgress item){
         if (item != null){
             if(kvizProgres == null){
                 kvizProgres = new ArrayList<>();

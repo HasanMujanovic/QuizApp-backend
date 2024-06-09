@@ -1,5 +1,6 @@
 package com.bitconex.bitquiz.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,12 +35,17 @@ public class DoneQuiz {
     @Column(name = "quiz_id_for_search")
     private int quizIdForSearch;
 
+    @Column(name = "username")
+    private String username;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User userEnd;
 
     @ManyToOne
     @JoinColumn(name = "quiz_id")
+    @JsonIgnore
     private Quiz quizEnd;
 
 

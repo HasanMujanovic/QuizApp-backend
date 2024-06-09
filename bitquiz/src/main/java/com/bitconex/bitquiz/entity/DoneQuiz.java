@@ -28,6 +28,12 @@ public class DoneQuiz {
     @CreationTimestamp
     private Date dateOfFinishing;
 
+    @Column(name = "user_id_for_search")
+    private int userIdForSearch;
+
+    @Column(name = "quiz_id_for_search")
+    private int quizIdForSearch;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User userEnd;

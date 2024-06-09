@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/bit/quiz-progress")
-public class AddQuizProgressController {
+public class QuizProgressController {
     @Autowired
     private SaveProgressService saveProgressService;
 

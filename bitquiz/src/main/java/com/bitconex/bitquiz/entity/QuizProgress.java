@@ -30,11 +30,11 @@ public class QuizProgress {
     @UpdateTimestamp
     private Date timeOfSaving;
 
+    @Column(name = "quiz_id")
+    private int quizId;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User userSaved;
 
-    @ManyToOne
-    @JoinColumn(name = "quiz_id")
-    private Quiz quizSaved;
 }

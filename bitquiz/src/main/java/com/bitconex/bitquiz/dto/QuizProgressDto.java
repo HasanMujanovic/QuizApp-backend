@@ -9,9 +9,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class QuizProgressDto {
-    Quiz quiz;
     User user;
     QuizProgress quizProgress;
-
-
 }

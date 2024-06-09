@@ -47,8 +47,6 @@ public class Quiz {
     @OneToMany(mappedBy = "quizEnd", cascade = CascadeType.ALL)
     private List<DoneQuiz> doneQuiz = new ArrayList<>();
 
-    @OneToMany(mappedBy = "quizSaved", cascade = CascadeType.ALL)
-    private List<QuizProgress> quizProgress = new ArrayList<>();
 
 
     @ManyToOne
@@ -74,16 +72,5 @@ public class Quiz {
             item.setQuizEnd(this);
         }
     }
-
-    public void addSavedKviz(QuizProgress item){
-        if (item != null){
-            if(quizProgress == null){
-                quizProgress = new ArrayList<>();
-            }
-            quizProgress.add(item);
-            item.setQuizSaved(this);
-        }
-    }
-
 
 }

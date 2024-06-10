@@ -1,16 +1,17 @@
 package com.bitconex.bitquiz.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-
 @Entity
 @Table(name = "quiz_questions")
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class QuizQuestions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +35,7 @@ public class QuizQuestions {
     @OneToMany(mappedBy = "questions", cascade = CascadeType.ALL)
     private List<QuizResponse> responses = new ArrayList<>();
 
-    public void add(QuizResponse[] quizResponse){
+    public void add(QuizResponse[] quizResponse) {
         if (quizResponse != null) {
             if (responses == null) {
                 responses = new ArrayList<>();

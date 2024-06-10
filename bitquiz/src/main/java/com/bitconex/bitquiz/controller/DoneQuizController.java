@@ -4,6 +4,8 @@ import com.bitconex.bitquiz.dto.DoneQuizDto;
 import com.bitconex.bitquiz.entity.DoneQuiz;
 import com.bitconex.bitquiz.services.DoneQuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +17,9 @@ public class DoneQuizController {
     private DoneQuizService doneQuizService;
 
     @PostMapping("/make")
-    public void napraviKviz(@RequestBody DoneQuizDto doneQuizDto){
+    public ResponseEntity<DoneQuizDto> napraviKviz(@RequestBody DoneQuizDto doneQuizDto) {
         doneQuizService.addDoneQuiz(doneQuizDto);
+        return new ResponseEntity<>(doneQuizDto, HttpStatus.CREATED);
     }
 
     @GetMapping("/{quizId}/doneQuiz")

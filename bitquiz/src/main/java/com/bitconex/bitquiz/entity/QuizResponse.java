@@ -1,13 +1,15 @@
 package com.bitconex.bitquiz.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "quiz_response")
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class QuizResponse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,28 +1,30 @@
 package com.bitconex.bitquiz.services.impl;
 
+import com.bitconex.bitquiz.dao.QuizRepo;
 import com.bitconex.bitquiz.dao.UserRepo;
 import com.bitconex.bitquiz.dto.MakeQuizDto;
-import com.bitconex.bitquiz.entity.Quiz;
-import com.bitconex.bitquiz.entity.QuizQuestions;
-import com.bitconex.bitquiz.entity.QuizResponse;
-import com.bitconex.bitquiz.entity.User;
-import com.bitconex.bitquiz.services.MakeNewQuiz;
+import com.bitconex.bitquiz.entity.*;
+import com.bitconex.bitquiz.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
-public class MakeNewQuizImpl implements MakeNewQuiz {
+public class QuizServiceImpl implements QuizService {
 
     @Autowired
     UserRepo userRepo;
 
+    @Autowired
+    QuizRepo quizRepo;
+
     @Override
     public void makeQuiz(MakeQuizDto makeQuizDto) {
-        Quiz quiz = makeQuizDto.getQuiz();
+        com.bitconex.bitquiz.entity.Quiz quiz = makeQuizDto.getQuiz();
         User user = makeQuizDto.getUser();
 
         List<QuizQuestions> quizQuestions = new ArrayList<>();
@@ -40,6 +42,22 @@ public class MakeNewQuizImpl implements MakeNewQuiz {
         user.add(quiz);
 
         userRepo.save(user);
+
+    }
+
+    @Override
+    public void editQuiz(Quiz newQuizServiceData) {
+        Optional<Quiz> quizOptional = quizRepo.findById(newQuizServiceData.getId());
+
+        if (quizOptional.isPresent()){
+            Quiz existingQuiz = quizOptional.get();
+            existingQuiz.setCategory(newQuizServiceData.getCategory());
+            existingQuiz.setDifficulty(newQuizServiceData.getDifficulty());
+            existingQuiz.setName(newQuizServiceData.getName());
+            existingQuiz.setStatus(newQuizServiceData.getStatus());
+
+            quizRepo.save(existingQuiz);
+        }
 
     }
 }

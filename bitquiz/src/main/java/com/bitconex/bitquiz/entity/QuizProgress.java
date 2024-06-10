@@ -1,16 +1,18 @@
 package com.bitconex.bitquiz.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "quiz_progress")
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class QuizProgress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

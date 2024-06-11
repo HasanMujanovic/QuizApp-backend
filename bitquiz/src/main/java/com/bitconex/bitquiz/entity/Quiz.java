@@ -28,7 +28,7 @@ public class Quiz {
     @Column(name = "difficulty")
     private String difficulty;
 
-    @Column(name = "username")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "likes")

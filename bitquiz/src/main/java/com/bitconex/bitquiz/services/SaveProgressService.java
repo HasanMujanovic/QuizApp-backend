@@ -1,9 +1,8 @@
 package com.bitconex.bitquiz.services;
 
-import com.bitconex.bitquiz.dto.QuizProgressDto;
-import com.bitconex.bitquiz.entity.Quiz;
+import com.bitconex.bitquiz.dto.AddQuizProgressDto;
 
 public interface SaveProgressService {
-    void saveProgress(QuizProgressDto quizProgressDto);
+    void saveProgress(AddQuizProgressDto addQuizProgressDto);
 
 }

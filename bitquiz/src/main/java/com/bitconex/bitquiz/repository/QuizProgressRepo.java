@@ -1,4 +1,4 @@
-package com.bitconex.bitquiz.dao;
+package com.bitconex.bitquiz.repository;
 
 import com.bitconex.bitquiz.entity.QuizProgress;
 import com.bitconex.bitquiz.entity.User;

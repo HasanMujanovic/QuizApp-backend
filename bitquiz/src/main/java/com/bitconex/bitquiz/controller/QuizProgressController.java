@@ -1,7 +1,7 @@
 package com.bitconex.bitquiz.controller;
 
 
-import com.bitconex.bitquiz.dto.QuizProgressDto;
+import com.bitconex.bitquiz.dto.AddQuizProgressDto;
 import com.bitconex.bitquiz.services.SaveProgressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +16,7 @@ public class QuizProgressController {
     private SaveProgressService saveProgressService;
 
     @PostMapping("/make")
-    public void saveQuizProgress(@RequestBody QuizProgressDto quizProgressDto){
-        saveProgressService.saveProgress(quizProgressDto);
+    public void saveQuizProgress(@RequestBody AddQuizProgressDto addQuizProgressDto){
+        saveProgressService.saveProgress(addQuizProgressDto);
     }
 }

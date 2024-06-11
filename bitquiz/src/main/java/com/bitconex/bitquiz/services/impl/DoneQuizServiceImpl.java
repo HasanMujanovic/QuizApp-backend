@@ -1,7 +1,7 @@
 package com.bitconex.bitquiz.services.impl;
 
-import com.bitconex.bitquiz.dao.DoneQuizRepo;
-import com.bitconex.bitquiz.dto.DoneQuizDto;
+import com.bitconex.bitquiz.repository.DoneQuizRepo;
+import com.bitconex.bitquiz.dto.AddDoneQuizDTO;
 import com.bitconex.bitquiz.entity.DoneQuiz;
 import com.bitconex.bitquiz.entity.Quiz;
 import com.bitconex.bitquiz.entity.User;
@@ -20,11 +20,11 @@ public class DoneQuizServiceImpl implements DoneQuizService {
     DoneQuizRepo doneQuizRepo;
 
     @Override
-    public void addDoneQuiz(DoneQuizDto doneQuizDto) {
+    public void addDoneQuiz(AddDoneQuizDTO addDoneQuizDTO) {
 
-        User user = doneQuizDto.getUser();
-        Quiz quiz = doneQuizDto.getQuiz();
-        DoneQuiz doneQuiz = doneQuizDto.getDoneQuiz();
+        User user = addDoneQuizDTO.getUser();
+        Quiz quiz = addDoneQuizDTO.getQuiz();
+        DoneQuiz doneQuiz = addDoneQuizDTO.getDoneQuiz();
         user.addZavrsenKviz(doneQuiz);
         quiz.addZavrsenKviz(doneQuiz);
         doneQuizRepo.save(doneQuiz);

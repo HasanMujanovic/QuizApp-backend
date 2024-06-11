@@ -1,4 +1,4 @@
-package com.bitconex.bitquiz.dao;
+package com.bitconex.bitquiz.repository;
 
 import com.bitconex.bitquiz.entity.DoneQuiz;
 import org.springframework.data.domain.Page;

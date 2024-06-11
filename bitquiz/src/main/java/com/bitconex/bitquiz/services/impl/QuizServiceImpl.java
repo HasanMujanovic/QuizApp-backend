@@ -80,15 +80,16 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public void editQuiz(Quiz newQuizServiceData) {
-        Optional<Quiz> quizOptional = quizRepo.findById(newQuizServiceData.getId());
+    public void editQuiz(QuizDTO quizDTOData) {
+
+        Optional<Quiz> quizOptional = quizRepo.findById(quizDTOData.getId());
 
         if (quizOptional.isPresent()){
             Quiz existingQuiz = quizOptional.get();
-            existingQuiz.setCategory(newQuizServiceData.getCategory());
-            existingQuiz.setDifficulty(newQuizServiceData.getDifficulty());
-            existingQuiz.setName(newQuizServiceData.getName());
-            existingQuiz.setStatus(newQuizServiceData.getStatus());
+            existingQuiz.setCategory(quizDTOData.getCategory());
+            existingQuiz.setDifficulty(quizDTOData.getDifficulty());
+            existingQuiz.setName(quizDTOData.getName());
+            existingQuiz.setStatus(quizDTOData.getStatus());
 
             quizRepo.save(existingQuiz);
         }

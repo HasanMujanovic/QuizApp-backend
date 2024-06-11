@@ -21,8 +21,7 @@ public class QuizDTOMapper implements Function<Quiz, QuizDTO> {
         dto.setDoneIt(quiz.getDoneIt());
         dto.setTime(quiz.getTime());
         dto.setPoints(quiz.getPoints());
-//        dto.setQuestions(quiz.getQuestions().stream().map(QuizQuestions::getId).collect(Collectors.toList()));
-//        dto.setDoneQuiz(quiz.getDoneQuiz().stream().map(DoneQuiz::getId).collect(Collectors.toList()));
+
         return dto;
     }
 }

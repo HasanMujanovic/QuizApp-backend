@@ -16,5 +16,4 @@ public class QuizProgressDTO {
     private int questionsAnswered;
     private Date timeOfSaving;
     private int quizId;
-    private int userId;
 }

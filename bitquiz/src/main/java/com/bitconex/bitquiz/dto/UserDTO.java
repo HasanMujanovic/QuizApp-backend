@@ -16,8 +16,5 @@ public class UserDTO {
     private String roles;
     private int level;
     private int points;
-    private List<Integer> quizzes;
-    private List<Integer> doneQuiz;
-    private List<Integer> quizProgresses;
 
 }

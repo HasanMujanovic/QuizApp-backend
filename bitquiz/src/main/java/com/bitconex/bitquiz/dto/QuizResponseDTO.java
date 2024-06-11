@@ -11,5 +11,4 @@ public class QuizResponseDTO {
     private long id;
     private String text;
     private boolean correctAnswer;
-    private long questionId;
 }

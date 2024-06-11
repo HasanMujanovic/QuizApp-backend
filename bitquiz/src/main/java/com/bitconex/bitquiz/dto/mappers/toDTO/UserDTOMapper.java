@@ -21,8 +21,6 @@ public class UserDTOMapper implements Function<User, UserDTO> {
         dto.setRoles(user.getRoles());
         dto.setLevel(user.getLevel());
         dto.setPoints(user.getPoints());
-        dto.setQuizzes(user.getQuizzes().stream().map(Quiz::getId).collect(Collectors.toList()));
-        dto.setDoneQuiz(user.getDoneQuiz().stream().map(DoneQuiz::getId).collect(Collectors.toList()));
-        dto.setQuizProgresses(user.getQuizProgresses().stream().map(QuizProgress::getId).collect(Collectors.toList()));
+
         return dto;    }
 }

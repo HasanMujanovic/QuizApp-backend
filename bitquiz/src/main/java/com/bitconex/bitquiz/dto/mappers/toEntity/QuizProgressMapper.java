@@ -23,8 +23,7 @@ public class QuizProgressMapper implements Function<QuizProgressDTO, QuizProgres
         progress.setTimeOfSaving(quizProgressDTO.getTimeOfSaving());
         progress.setQuizId(quizProgressDTO.getQuizId());
 
-        User user = userRepo.findById(quizProgressDTO.getUserId()).orElse(null);
-        progress.setUserSaved(user);
+
 
         return progress;    }
 }

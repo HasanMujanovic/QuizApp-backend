@@ -18,8 +18,7 @@ public class DoneQuizDTOMapper implements Function<DoneQuiz, DoneQuizDTO> {
         dto.setUserIdForSearch(doneQuiz.getUserIdForSearch());
         dto.setQuizIdForSearch(doneQuiz.getQuizIdForSearch());
         dto.setUsername(doneQuiz.getUsername());
-        dto.setUserId(doneQuiz.getUserEnd().getId());
-        dto.setQuizId(doneQuiz.getQuizEnd().getId());
+
         return dto;
     }
 }

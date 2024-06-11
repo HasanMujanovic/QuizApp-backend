@@ -10,5 +10,5 @@ public interface QuizService {
     void makeQuiz(MakeQuizDto makeQuizDto);
     void editQuiz(Quiz quizService);
     List<QuizDTO> getAllQuiz();
-    QuizDTO getOneQuiz(int quizId);
+    QuizDTO getQuizById(int quizId);
 }

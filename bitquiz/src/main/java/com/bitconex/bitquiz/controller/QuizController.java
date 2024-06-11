@@ -26,7 +26,7 @@ public class QuizController {
 
     @GetMapping("/{id}")
     public ResponseEntity<QuizDTO> getQuizById(@PathVariable int id){
-        QuizDTO quizDTO = quizService.getOneQuiz(id);
+        QuizDTO quizDTO = quizService.getQuizById(id);
         return ResponseEntity.ok(quizDTO);
     }
 

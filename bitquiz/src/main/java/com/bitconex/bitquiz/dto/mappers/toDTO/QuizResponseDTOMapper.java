@@ -14,7 +14,6 @@ public class QuizResponseDTOMapper implements Function<QuizResponse, QuizRespons
         dto.setId(quizResponse.getId());
         dto.setText(quizResponse.getText());
         dto.setCorrectAnswer(quizResponse.isCorrectAnswer());
-        dto.setQuestionId(quizResponse.getQuestions().getId());
         return dto;
     }
 }

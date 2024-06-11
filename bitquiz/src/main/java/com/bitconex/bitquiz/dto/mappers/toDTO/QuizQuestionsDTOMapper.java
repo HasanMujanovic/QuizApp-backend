@@ -15,7 +15,6 @@ public class QuizQuestionsDTOMapper implements Function<QuizQuestions, QuizQuest
         dto.setText(quizQuestions.getText());
         dto.setPoints(quizQuestions.getPoints());
         dto.setHelpAllowed(quizQuestions.isHelpAllowed());
-        dto.setQuizId(quizQuestions.getQuiz().getId());
         return dto;
     }
 }

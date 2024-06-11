@@ -9,6 +9,7 @@ import com.bitconex.bitquiz.repository.DoneQuizRepo;
 import com.bitconex.bitquiz.repository.QuizProgressRepo;
 import com.bitconex.bitquiz.repository.QuizRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.function.Function;
@@ -16,7 +17,7 @@ import java.util.stream.Collectors;
 
 import java.util.Optional;
 
-
+@Service
 public class UserMapper implements Function<UserDTO, User> {
     private QuizRepo quizRepo;
     private DoneQuizRepo doneQuizRepo;
@@ -40,26 +41,7 @@ public class UserMapper implements Function<UserDTO, User> {
         user.setPoints(userDTO.getPoints());
 
 
-        List<Quiz> quizzes = userDTO.getQuizzes().stream()
-                .map(quizRepo::findById)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .collect(Collectors.toList());
-        user.setQuizzes(quizzes);
 
-        List<DoneQuiz> doneQuizList = userDTO.getDoneQuiz().stream()
-                .map(doneQuizRepo::findById)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .collect(Collectors.toList());
-        user.setDoneQuiz(doneQuizList);
-
-        List<QuizProgress> quizProgressList = userDTO.getQuizProgresses().stream()
-                .map(quizProgressRepo::findById)
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .collect(Collectors.toList());
-        user.setQuizProgresses(quizProgressList);
 
         return user;    }
 }

@@ -32,16 +32,6 @@ public class QuizMapper implements Function<QuizDTO, Quiz> {
         quiz.setTime(dto.getTime());
         quiz.setPoints(dto.getPoints());
 
-//        // Pretvaranje liste ID-eva u listu entiteta
-//        List<QuizQuestions> questions = dto.getQuestions().stream()
-//                .map(id -> quizQuestionsRepo.findById(id).orElse(null))
-//                .collect(Collectors.toList());
-//        quiz.setQuestions(questions);
-//
-//        List<DoneQuiz> doneQuizList = dto.getDoneQuiz().stream()
-//                .map(id -> doneQuizRepo.findById(id).orElse(null))
-//                .collect(Collectors.toList());
-//        quiz.setDoneQuiz(doneQuizList);
 
         return quiz;
     }

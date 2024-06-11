@@ -20,9 +20,6 @@ public class QuizResponseMapper implements Function<QuizResponseDTO, QuizRespons
         response.setText(quizResponseDTO.getText());
         response.setCorrectAnswer(quizResponseDTO.isCorrectAnswer());
 
-        QuizQuestions question = quizQuestionsRepo.findById(quizResponseDTO.getQuestionId()).orElse(null);
-        response.setQuestions(question);
-
         return response;
     }
 }

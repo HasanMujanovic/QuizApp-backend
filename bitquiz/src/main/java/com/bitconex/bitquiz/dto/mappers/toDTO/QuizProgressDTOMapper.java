@@ -19,7 +19,6 @@ public class QuizProgressDTOMapper implements Function<QuizProgress, QuizProgres
         dto.setQuestionsAnswered(quizProgress.getQuestionsAnswered());
         dto.setTimeOfSaving(quizProgress.getTimeOfSaving());
         dto.setQuizId(quizProgress.getQuizId());
-        dto.setUserId(quizProgress.getUserSaved().getId());
         return dto;
     }
 }

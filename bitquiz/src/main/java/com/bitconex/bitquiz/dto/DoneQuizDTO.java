@@ -17,6 +17,5 @@ public class DoneQuizDTO {
     private int userIdForSearch;
     private int quizIdForSearch;
     private String username;
-    private int userId;
-    private int quizId;
+
 }

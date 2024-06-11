@@ -17,7 +17,5 @@ public class QuizDTO {
     private int doneIt;
     private int time;
     private int points;
-//    private List<Long> questions;
-//    private List<Integer> doneQuiz;
 
 }

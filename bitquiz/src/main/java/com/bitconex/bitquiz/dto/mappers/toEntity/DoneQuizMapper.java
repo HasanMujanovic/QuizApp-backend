@@ -33,11 +33,6 @@ public class DoneQuizMapper implements Function<DoneQuizDTO, DoneQuiz> {
         doneQuiz.setQuizIdForSearch(doneQuizDTO.getQuizIdForSearch());
         doneQuiz.setUsername(doneQuizDTO.getUsername());
 
-        User user = userRepo.findById(doneQuizDTO.getUserIdForSearch()).orElse(null);
-        doneQuiz.setUserEnd(user);
-
-        Quiz quiz = quizRepol.findById(doneQuizDTO.getQuizIdForSearch()).orElse(null);
-        doneQuiz.setQuizEnd(quiz);
 
         return doneQuiz;
     }

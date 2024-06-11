@@ -1,16 +1,12 @@
-package com.bitconex.bitquiz.dto.mappers;
+package com.bitconex.bitquiz.dto.mappers.toEntity;
 
 import com.bitconex.bitquiz.dto.QuizDTO;
-import com.bitconex.bitquiz.entity.DoneQuiz;
 import com.bitconex.bitquiz.entity.Quiz;
-import com.bitconex.bitquiz.entity.QuizQuestions;
 import com.bitconex.bitquiz.repository.DoneQuizRepo;
 import com.bitconex.bitquiz.repository.QuizQuestionsRepo;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Service
 public class QuizMapper implements Function<QuizDTO, Quiz> {
@@ -36,16 +32,16 @@ public class QuizMapper implements Function<QuizDTO, Quiz> {
         quiz.setTime(dto.getTime());
         quiz.setPoints(dto.getPoints());
 
-        // Pretvaranje liste ID-eva u listu entiteta
-        List<QuizQuestions> questions = dto.getQuestions().stream()
-                .map(id -> quizQuestionsRepo.findById(id).orElse(null))
-                .collect(Collectors.toList());
-        quiz.setQuestions(questions);
-
-        List<DoneQuiz> doneQuizList = dto.getDoneQuiz().stream()
-                .map(id -> doneQuizRepo.findById(id).orElse(null))
-                .collect(Collectors.toList());
-        quiz.setDoneQuiz(doneQuizList);
+//        // Pretvaranje liste ID-eva u listu entiteta
+//        List<QuizQuestions> questions = dto.getQuestions().stream()
+//                .map(id -> quizQuestionsRepo.findById(id).orElse(null))
+//                .collect(Collectors.toList());
+//        quiz.setQuestions(questions);
+//
+//        List<DoneQuiz> doneQuizList = dto.getDoneQuiz().stream()
+//                .map(id -> doneQuizRepo.findById(id).orElse(null))
+//                .collect(Collectors.toList());
+//        quiz.setDoneQuiz(doneQuizList);
 
         return quiz;
     }

@@ -12,5 +12,5 @@ public class QuizQuestionsDTO {
     private String text;
     private int points;
     private boolean helpAllowed;
-    private long quizId;
+    private int quizId;
 }

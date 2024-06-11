@@ -2,7 +2,7 @@ package com.bitconex.bitquiz.services.impl;
 
 import com.bitconex.bitquiz.dto.MakeQuizDto;
 import com.bitconex.bitquiz.dto.QuizDTO;
-import com.bitconex.bitquiz.dto.mappers.QuizDTOMapper;
+import com.bitconex.bitquiz.dto.mappers.toDTO.QuizDTOMapper;
 import com.bitconex.bitquiz.entity.Quiz;
 import com.bitconex.bitquiz.entity.QuizQuestions;
 import com.bitconex.bitquiz.entity.QuizResponse;
@@ -76,6 +76,17 @@ public class QuizServiceImpl implements QuizService {
         List<Quiz> quizList = quizRepo.findAll();
         return quizList.stream()
                 .map(quiz -> quizDTOMapper.apply(quiz))
-                .collect(Collectors.toList());    }
+                .collect(Collectors.toList());
+   }
+
+    @Override
+    public QuizDTO getOneQuiz(int quizId) {
+        Optional<Quiz> quizOptional = quizRepo.findById(quizId);
+        Quiz existingQuiz = new Quiz();
+        if (quizOptional.isPresent()){
+            existingQuiz = quizOptional.get();
+        }
+        return quizDTOMapper.apply(existingQuiz);
+    }
 
 }

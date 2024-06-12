@@ -40,8 +40,7 @@ public class PlayingQuizServiceImpl implements PlayingQuizService {
 
     @Override
     public List<QuizQuestionsDTO> getQuizQuestionsByQuizId(int quizId) {
-        Quiz quiz = quizRepo.findById(quizId)
-                .orElseThrow(() -> new RuntimeException("Quiz not found with id: " + quizId));
+        Quiz quiz = quizRepo.findById(quizId);
 
         List<QuizQuestions> quizQuestions = quiz.getQuestions();
 
@@ -64,8 +63,7 @@ public class PlayingQuizServiceImpl implements PlayingQuizService {
 
     @Override
     public List<QuizProgressDTO> getQuizProgressByUserId(int userId) {
-        User user = userRepo.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found with id: " + userId));
+        User user = userRepo.findById(userId);
 
         List<QuizProgress> quizProgressList = user.getQuizProgresses();
 

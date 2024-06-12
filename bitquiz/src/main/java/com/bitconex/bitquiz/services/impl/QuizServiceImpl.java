@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -82,17 +81,14 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public void editQuiz(QuizDTO quizDTOData) {
 
-        Optional<Quiz> quizOptional = quizRepo.findById(quizDTOData.getId());
+       Quiz quizOptional = quizRepo.findById(quizDTOData.getId());
 
-        if (quizOptional.isPresent()){
-            Quiz existingQuiz = quizOptional.get();
-            existingQuiz.setCategory(quizDTOData.getCategory());
-            existingQuiz.setDifficulty(quizDTOData.getDifficulty());
-            existingQuiz.setName(quizDTOData.getName());
-            existingQuiz.setStatus(quizDTOData.getStatus());
+        quizOptional.setCategory(quizDTOData.getCategory());
+        quizOptional.setDifficulty(quizDTOData.getDifficulty());
+        quizOptional.setName(quizDTOData.getName());
+        quizOptional.setStatus(quizDTOData.getStatus());
 
-            quizRepo.save(existingQuiz);
-        }
+            quizRepo.save(quizOptional);
     }
 
     @Override
@@ -105,12 +101,20 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public QuizDTO getQuizById(int quizId) {
-        Optional<Quiz> quizOptional = quizRepo.findById(quizId);
-        Quiz existingQuiz = new Quiz();
-        if (quizOptional.isPresent()){
-            existingQuiz = quizOptional.get();
-        }
-        return quizDTOMapper.apply(existingQuiz);
+        Quiz quizOptional = quizRepo.findById(quizId);
+
+        return quizDTOMapper.apply(quizOptional);
+    }
+
+    @Override
+    public List<QuizDTO> getQuizesMadeByUser(int userId) {
+        User user = userRepo.findById(userId);
+
+        List<Quiz> quizzes = user.getQuizzes();
+
+        return quizzes.stream()
+                .map(quizDTOMapper)
+                .collect(Collectors.toList());
     }
 
 }

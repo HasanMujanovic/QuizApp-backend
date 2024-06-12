@@ -29,5 +29,11 @@ public class QuizController {
         QuizDTO quizDTO = quizService.getQuizById(id);
         return ResponseEntity.ok(quizDTO);
     }
+    @GetMapping("/{userId}/quizzes")
+    public ResponseEntity<List<QuizDTO>> getQuizzesByUserId(@PathVariable int userId){
+        List<QuizDTO> quizDTOList = quizService.getQuizesMadeByUser(userId);
+        return ResponseEntity.ok(quizDTOList);
+    }
+
 
 }

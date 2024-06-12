@@ -5,10 +5,10 @@ import com.bitconex.bitquiz.dto.QuizDTO;
 import com.bitconex.bitquiz.services.DoneQuizService;
 import com.bitconex.bitquiz.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/bit/make-quiz")
@@ -32,11 +32,6 @@ public class MakeQuizController {
         quizService.editQuiz(quizDTO);
     }
 
-    @GetMapping("/{userId}/quizzes")
-    public ResponseEntity<List<QuizDTO>> getQuizzesByUserId(@PathVariable int userId){
-        List<QuizDTO> quizDTOList = doneQuizService.getQuizesMadeByUser(userId);
-        return ResponseEntity.ok(quizDTOList);
-    }
 
 
 

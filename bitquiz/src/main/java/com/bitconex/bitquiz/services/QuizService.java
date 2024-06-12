@@ -10,4 +10,6 @@ public interface QuizService {
     void editQuiz(QuizDTO quizDTO);
     List<QuizDTO> getAllQuiz();
     QuizDTO getQuizById(int quizId);
+    List<QuizDTO>getQuizesMadeByUser(int userId);
+
 }

@@ -1,7 +1,7 @@
 package com.bitconex.bitquiz.controller;
 
 import com.bitconex.bitquiz.dto.AddDoneQuizDTO;
-import com.bitconex.bitquiz.entity.DoneQuiz;
+import com.bitconex.bitquiz.dto.DoneQuizDTO;
 import com.bitconex.bitquiz.services.DoneQuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,8 +23,15 @@ public class DoneQuizController {
     }
 
     @GetMapping("/{quizId}/doneQuiz")
-    public List<DoneQuiz> getLeaderboardForQuiz(@PathVariable int quizId) {
-        int limit = 2;
-        return doneQuizService.getSortedLeaderboard(quizId, limit);
+    public ResponseEntity<List<DoneQuizDTO>> getLeaderboardForQuiz(@PathVariable int quizId) {
+        int limit = 5;
+        List<DoneQuizDTO> leaderboard = doneQuizService.getSortedLeaderboard(quizId, limit);
+        return ResponseEntity.ok(leaderboard);
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<DoneQuizDTO>> getDoneQuizzesByUserId(@PathVariable int userId) {
+        List<DoneQuizDTO> doneQuizzes = doneQuizService.getDoneQuizzesByUserId(userId);
+        return ResponseEntity.ok(doneQuizzes);
     }
 }

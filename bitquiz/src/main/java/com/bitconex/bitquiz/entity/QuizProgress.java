@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.util.Date;
 
 @Entity
 @Table(name = "quiz_progress")
@@ -28,15 +25,21 @@ public class QuizProgress {
     @Column(name = "questions_answered")
     private int questionsAnswered;
 
-    @Column(name = "time_of_saving")
-    @UpdateTimestamp
-    private Date timeOfSaving;
-
     @Column(name = "quiz_id")
     private int quizId;
+
+    @Column(name = "cor_ans")
+    private int correctAns;
+
+    @Column(name = "wrong_ans")
+    private int wrongAns;
+
+    @Column(name = "skipped_ans")
+    private int skippedAns;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User userSaved;
+
 
 }

@@ -1,13 +1,9 @@
-package com.bitconex.bitquiz.dto;
+package com.bitconex.bitquiz.architecture.request;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
-public class QuizDTO {
+public class QuizRequest {
     private int id;
     private String category;
     private String status;
@@ -17,5 +13,4 @@ public class QuizDTO {
     private int doneIt;
     private int time;
     private int points;
-
 }

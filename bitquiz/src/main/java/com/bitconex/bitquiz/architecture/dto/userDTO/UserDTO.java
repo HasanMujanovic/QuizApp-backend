@@ -1,10 +1,8 @@
-package com.bitconex.bitquiz.dto;
+package com.bitconex.bitquiz.architecture.dto.userDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor

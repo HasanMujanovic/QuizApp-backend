@@ -1,6 +1,6 @@
-package com.bitconex.bitquiz.dto.mappers.toDTO;
+package com.bitconex.bitquiz.architecture.dto.mappers.toDTO;
 
-import com.bitconex.bitquiz.dto.QuizResponseDTO;
+import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizResponseDTO;
 import com.bitconex.bitquiz.entity.QuizResponse;
 import org.springframework.stereotype.Service;
 

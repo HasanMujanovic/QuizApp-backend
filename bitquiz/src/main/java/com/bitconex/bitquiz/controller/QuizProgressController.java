@@ -1,7 +1,7 @@
 package com.bitconex.bitquiz.controller;
 
 
-import com.bitconex.bitquiz.dto.AddQuizProgressDto;
+import com.bitconex.bitquiz.architecture.dto.AddQuizProgressDto;
 import com.bitconex.bitquiz.services.SaveProgressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

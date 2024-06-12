@@ -1,7 +1,7 @@
 package com.bitconex.bitquiz.controller;
 
-import com.bitconex.bitquiz.dto.UserDTO;
-import com.bitconex.bitquiz.dto.UserLoginDTO;
+import com.bitconex.bitquiz.architecture.dto.userDTO.UserDTO;
+import com.bitconex.bitquiz.architecture.dto.userDTO.UserLoginDTO;
 import com.bitconex.bitquiz.entity.User;
 import com.bitconex.bitquiz.repository.UserRepo;
 import com.bitconex.bitquiz.services.UserService;

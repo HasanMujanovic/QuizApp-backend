@@ -1,7 +1,7 @@
 package com.bitconex.bitquiz.services;
 
-import com.bitconex.bitquiz.dto.MakeQuizDto;
-import com.bitconex.bitquiz.dto.QuizDTO;
+import com.bitconex.bitquiz.architecture.dto.MakeQuizDto;
+import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizDTO;
 
 import java.util.List;
 

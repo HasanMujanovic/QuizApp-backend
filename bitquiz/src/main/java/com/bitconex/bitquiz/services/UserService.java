@@ -1,6 +1,6 @@
 package com.bitconex.bitquiz.services;
 
-import com.bitconex.bitquiz.dto.UserDTO;
+import com.bitconex.bitquiz.architecture.dto.userDTO.UserDTO;
 import com.bitconex.bitquiz.entity.User;
 
 public interface UserService {

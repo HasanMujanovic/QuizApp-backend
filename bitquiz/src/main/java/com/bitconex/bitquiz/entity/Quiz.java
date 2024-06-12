@@ -43,6 +43,8 @@ public class Quiz {
     @Column(name = "points")
     private int points;
 
+
+
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<QuizQuestions> questions = new ArrayList<>();
 

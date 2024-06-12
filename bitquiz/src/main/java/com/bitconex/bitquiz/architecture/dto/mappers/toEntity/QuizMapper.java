@@ -1,6 +1,6 @@
-package com.bitconex.bitquiz.dto.mappers.toEntity;
+package com.bitconex.bitquiz.architecture.dto.mappers.toEntity;
 
-import com.bitconex.bitquiz.dto.QuizDTO;
+import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizDTO;
 import com.bitconex.bitquiz.entity.Quiz;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,6 @@ public class QuizMapper implements Function<QuizDTO, Quiz> {
         quiz.setDoneIt(dto.getDoneIt());
         quiz.setTime(dto.getTime());
         quiz.setPoints(dto.getPoints());
-
 
         return quiz;
     }

@@ -1,4 +1,4 @@
-package com.bitconex.bitquiz.dto;
+package com.bitconex.bitquiz.architecture.dto.quizDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

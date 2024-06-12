@@ -1,11 +1,11 @@
 package com.bitconex.bitquiz.services.impl;
 
-import com.bitconex.bitquiz.dto.QuizProgressDTO;
-import com.bitconex.bitquiz.dto.QuizQuestionsDTO;
-import com.bitconex.bitquiz.dto.QuizResponseDTO;
-import com.bitconex.bitquiz.dto.mappers.toDTO.QuizProgressDTOMapper;
-import com.bitconex.bitquiz.dto.mappers.toDTO.QuizQuestionsDTOMapper;
-import com.bitconex.bitquiz.dto.mappers.toDTO.QuizResponseDTOMapper;
+import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizProgressDTO;
+import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizQuestionsDTO;
+import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizResponseDTO;
+import com.bitconex.bitquiz.architecture.dto.mappers.toDTO.QuizProgressDTOMapper;
+import com.bitconex.bitquiz.architecture.dto.mappers.toDTO.QuizQuestionsDTOMapper;
+import com.bitconex.bitquiz.architecture.dto.mappers.toDTO.QuizResponseDTOMapper;
 import com.bitconex.bitquiz.entity.*;
 import com.bitconex.bitquiz.repository.QuizQuestionsRepo;
 import com.bitconex.bitquiz.repository.QuizRepo;

@@ -1,6 +1,6 @@
-package com.bitconex.bitquiz.dto.mappers.toDTO;
+package com.bitconex.bitquiz.architecture.dto.mappers.toDTO;
 
-import com.bitconex.bitquiz.dto.QuizProgressDTO;
+import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizProgressDTO;
 import com.bitconex.bitquiz.entity.QuizProgress;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +17,10 @@ public class QuizProgressDTOMapper implements Function<QuizProgress, QuizProgres
         dto.setPoints(quizProgress.getPoints());
         dto.setTime(quizProgress.getTime());
         dto.setQuestionsAnswered(quizProgress.getQuestionsAnswered());
-        dto.setTimeOfSaving(quizProgress.getTimeOfSaving());
         dto.setQuizId(quizProgress.getQuizId());
+        dto.setSkippedAns(quizProgress.getSkippedAns());
+        dto.setCorrectAns(quizProgress.getCorrectAns());
+        dto.setWrongAns(quizProgress.getWrongAns());
         return dto;
     }
 }

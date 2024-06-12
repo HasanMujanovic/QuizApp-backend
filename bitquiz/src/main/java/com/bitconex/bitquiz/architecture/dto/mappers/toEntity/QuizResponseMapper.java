@@ -1,7 +1,6 @@
-package com.bitconex.bitquiz.dto.mappers.toEntity;
+package com.bitconex.bitquiz.architecture.dto.mappers.toEntity;
 
-import com.bitconex.bitquiz.dto.QuizResponseDTO;
-import com.bitconex.bitquiz.entity.QuizQuestions;
+import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizResponseDTO;
 import com.bitconex.bitquiz.entity.QuizResponse;
 import com.bitconex.bitquiz.repository.QuizQuestionsRepo;
 import org.springframework.beans.factory.annotation.Autowired;

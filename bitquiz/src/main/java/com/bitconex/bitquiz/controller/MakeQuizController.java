@@ -1,7 +1,8 @@
 package com.bitconex.bitquiz.controller;
 
-import com.bitconex.bitquiz.dto.MakeQuizDto;
-import com.bitconex.bitquiz.dto.QuizDTO;
+import com.bitconex.bitquiz.architecture.dto.MakeQuizDto;
+import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizDTO;
+import com.bitconex.bitquiz.architecture.request.QuizRequest;
 import com.bitconex.bitquiz.services.DoneQuizService;
 import com.bitconex.bitquiz.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,8 @@ public class MakeQuizController {
     }
 
     @PostMapping("/edit")
-    public void editQuiz(@RequestBody QuizDTO quizDTO){
+    public void editQuiz(@RequestBody QuizRequest quizRequest){
+        QuizDTO quizDTO = QuizDTO.requestToDto(quizRequest);
         quizService.editQuiz(quizDTO);
     }
 

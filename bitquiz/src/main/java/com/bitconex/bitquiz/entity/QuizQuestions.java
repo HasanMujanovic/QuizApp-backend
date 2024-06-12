@@ -27,6 +27,10 @@ public class QuizQuestions {
     @Column(name = "help_allowed")
     private boolean helpAllowed;
 
+    @Column(name = "minus_points")
+    private int minusPoints;
+
+
 
     @ManyToOne
     @JoinColumn(name = "quiz_id")

@@ -1,14 +1,10 @@
-package com.bitconex.bitquiz.dto.mappers.toDTO;
+package com.bitconex.bitquiz.architecture.dto.mappers.toDTO;
 
-import com.bitconex.bitquiz.dto.UserDTO;
-import com.bitconex.bitquiz.entity.DoneQuiz;
-import com.bitconex.bitquiz.entity.Quiz;
-import com.bitconex.bitquiz.entity.QuizProgress;
+import com.bitconex.bitquiz.architecture.dto.userDTO.UserDTO;
 import com.bitconex.bitquiz.entity.User;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Service
 public class UserDTOMapper implements Function<User, UserDTO> {

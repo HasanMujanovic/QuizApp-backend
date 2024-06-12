@@ -1,7 +1,7 @@
 package com.bitconex.bitquiz.controller;
 
-import com.bitconex.bitquiz.dto.AddDoneQuizDTO;
-import com.bitconex.bitquiz.dto.DoneQuizDTO;
+import com.bitconex.bitquiz.architecture.dto.AddDoneQuizDTO;
+import com.bitconex.bitquiz.architecture.dto.quizDTO.DoneQuizDTO;
 import com.bitconex.bitquiz.services.DoneQuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -27,9 +27,6 @@ public class DoneQuiz {
     @Column(name = "time_left")
     private int timeLeft;
 
-    @Column(name = "date_of_finishing")
-    @CreationTimestamp
-    private Date dateOfFinishing;
 
     @Column(name = "user_id_for_search")
     private int userIdForSearch;

@@ -1,7 +1,7 @@
 package com.bitconex.bitquiz.services;
 
-import com.bitconex.bitquiz.architecture.dto.AddDoneQuizDTO;
-import com.bitconex.bitquiz.architecture.dto.quizDTO.DoneQuizDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.AddDoneQuizDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.DoneQuizDTO;
 
 import java.util.List;
 

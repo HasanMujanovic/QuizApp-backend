@@ -1,7 +1,7 @@
 package com.bitconex.bitquiz.services.impl;
 
-import com.bitconex.bitquiz.architecture.dto.userDTO.UserDTO;
-import com.bitconex.bitquiz.architecture.dto.mappers.toDTO.UserDTOMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.usersDTO.UserDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toDTO.UserDTOMapper;
 import com.bitconex.bitquiz.entity.User;
 import com.bitconex.bitquiz.repository.UserRepo;
 import com.bitconex.bitquiz.services.UserService;

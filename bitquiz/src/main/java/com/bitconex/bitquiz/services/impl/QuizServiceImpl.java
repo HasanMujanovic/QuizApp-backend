@@ -1,15 +1,15 @@
 package com.bitconex.bitquiz.services.impl;
 
-import com.bitconex.bitquiz.architecture.dto.MakeQuizDto;
-import com.bitconex.bitquiz.architecture.dto.mappers.toDTO.QuizDTOMapper;
-import com.bitconex.bitquiz.architecture.dto.mappers.toEntity.QuizMapper;
-import com.bitconex.bitquiz.architecture.dto.mappers.toEntity.QuizQuestionsMapper;
-import com.bitconex.bitquiz.architecture.dto.mappers.toEntity.QuizResponseMapper;
-import com.bitconex.bitquiz.architecture.dto.mappers.toEntity.UserMapper;
-import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizDTO;
-import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizQuestionsDTO;
-import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizResponseDTO;
-import com.bitconex.bitquiz.architecture.dto.userDTO.UserDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.MakeQuizDto;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toDTO.QuizDTOMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizQuestionsMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizResponseMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.UserMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizQuestionsDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizResponseDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.usersDTO.UserDTO;
 import com.bitconex.bitquiz.entity.Quiz;
 import com.bitconex.bitquiz.entity.QuizQuestions;
 import com.bitconex.bitquiz.entity.QuizResponse;

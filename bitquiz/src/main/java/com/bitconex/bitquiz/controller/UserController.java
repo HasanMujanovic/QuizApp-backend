@@ -1,7 +1,9 @@
 package com.bitconex.bitquiz.controller;
 
-import com.bitconex.bitquiz.architecture.dto.userDTO.UserDTO;
-import com.bitconex.bitquiz.architecture.dto.userDTO.UserLoginDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.usersDTO.UserDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.usersDTO.UserLoginDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.UserLoginRequest;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.UserResponse;
 import com.bitconex.bitquiz.entity.User;
 import com.bitconex.bitquiz.repository.UserRepo;
 import com.bitconex.bitquiz.services.UserService;
@@ -24,9 +26,9 @@ public class UserController {
     }
 
     @GetMapping("/getByEmail/{email}")
-    public ResponseEntity<UserDTO> getUserByEmail(@PathVariable String email) {
+    public ResponseEntity<UserResponse> getUserByEmail(@PathVariable String email) {
         UserDTO userDTO = userService.getUser(email);
-        return ResponseEntity.ok(userDTO);
+        return ResponseEntity.ok(UserDTO.dtoToResponse(userDTO));
     }
 
     @GetMapping("/exists")
@@ -36,7 +38,8 @@ public class UserController {
     }
 
     @PostMapping("/checkUserLogIn")
-    public ResponseEntity<Boolean> checkIfUserExistsLogIn(@RequestBody UserLoginDTO userLoginDTO) {
+    public ResponseEntity<Boolean> checkIfUserExistsLogIn(@RequestBody UserLoginRequest userLoginRequest) {
+        UserLoginDTO userLoginDTO = UserLoginDTO.requestToResponse(userLoginRequest);
         boolean userExists = userService.checkIfUserExistsLogIn(userLoginDTO.getEmail(), userLoginDTO.getPassword());
         return ResponseEntity.ok(userExists);
     }

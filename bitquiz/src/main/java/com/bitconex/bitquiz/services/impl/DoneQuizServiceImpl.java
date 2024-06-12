@@ -1,10 +1,10 @@
 package com.bitconex.bitquiz.services.impl;
 
-import com.bitconex.bitquiz.architecture.dto.AddDoneQuizDTO;
-import com.bitconex.bitquiz.architecture.dto.quizDTO.DoneQuizDTO;
-import com.bitconex.bitquiz.architecture.dto.mappers.toDTO.DoneQuizDTOMapper;
-import com.bitconex.bitquiz.architecture.dto.mappers.toDTO.QuizDTOMapper;
-import com.bitconex.bitquiz.architecture.dto.mappers.toEntity.DoneQuizMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.AddDoneQuizDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.DoneQuizDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toDTO.DoneQuizDTOMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toDTO.QuizDTOMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.DoneQuizMapper;
 import com.bitconex.bitquiz.entity.DoneQuiz;
 import com.bitconex.bitquiz.entity.Quiz;
 import com.bitconex.bitquiz.entity.User;
@@ -52,7 +52,6 @@ public class DoneQuizServiceImpl implements DoneQuizService {
 
         user.addZavrsenKviz(doneQuiz);
         quiz.addZavrsenKviz(doneQuiz);
-
         doneQuizRepo.save(doneQuiz);
     }
 
@@ -60,7 +59,6 @@ public class DoneQuizServiceImpl implements DoneQuizService {
     public List<DoneQuizDTO> getSortedLeaderboard(int quizId, int limit) {
         Pageable pageable = PageRequest.of(0, limit);
         List<DoneQuiz> doneQuizList = doneQuizRepo.findByQuizEndIdOrderByPointsWonDescTimeLeftDesc(quizId, pageable).getContent();
-
         return doneQuizList.stream()
                 .map(res -> doneQuizDTOMapper.apply(res))
                 .collect(Collectors.toList());

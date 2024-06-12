@@ -1,8 +1,8 @@
 package com.bitconex.bitquiz.services;
 
-import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizProgressDTO;
-import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizQuestionsDTO;
-import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizResponseDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizProgressDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizQuestionsDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizResponseDTO;
 
 import java.util.List;
 

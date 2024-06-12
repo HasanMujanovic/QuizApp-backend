@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class QuizQuestions {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -30,8 +31,6 @@ public class QuizQuestions {
     @Column(name = "minus_points")
     private int minusPoints;
 
-
-
     @ManyToOne
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
@@ -47,7 +46,6 @@ public class QuizQuestions {
             for (QuizResponse value : quizResponse) {
                 responses.add(value);
                 value.setQuestions(this);
-
             }
         }
     }

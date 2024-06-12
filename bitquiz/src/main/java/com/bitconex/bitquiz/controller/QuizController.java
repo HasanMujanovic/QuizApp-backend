@@ -1,7 +1,7 @@
 package com.bitconex.bitquiz.controller;
 
-import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizDTO;
-import com.bitconex.bitquiz.architecture.response.QuizResponse;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.QuizResponse;
 import com.bitconex.bitquiz.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

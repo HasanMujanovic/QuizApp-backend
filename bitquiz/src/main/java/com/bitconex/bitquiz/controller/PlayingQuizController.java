@@ -1,8 +1,11 @@
 package com.bitconex.bitquiz.controller;
 
-import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizProgressDTO;
-import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizQuestionsDTO;
-import com.bitconex.bitquiz.architecture.dto.quizDTO.QuizResponseDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizProgressDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizQuestionsDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizResponseDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.QuizProgressResponse;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.QuizQuestionsResponse;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.QuziResponsessResponse;
 import com.bitconex.bitquiz.services.PlayingQuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/bit/playing")
@@ -20,20 +24,20 @@ public class PlayingQuizController {
     private PlayingQuizService quizService;
 
     @GetMapping("/{quizId}/questions")
-    public ResponseEntity<List<QuizQuestionsDTO>> getQuizQuestionsByQuizId(@PathVariable int quizId) {
+    public ResponseEntity<List<QuizQuestionsResponse>> getQuizQuestionsByQuizId(@PathVariable int quizId) {
         List<QuizQuestionsDTO> quizQuestionsDTOList = quizService.getQuizQuestionsByQuizId(quizId);
-        return ResponseEntity.ok(quizQuestionsDTOList);
+        return ResponseEntity.ok(quizQuestionsDTOList.stream().map(QuizQuestionsDTO::dtoToResponse).collect(Collectors.toList()));
     }
 
     @GetMapping("/questions/{questionId}/responses")
-    public ResponseEntity<List<QuizResponseDTO>> getQuizResponsesByQuestionId(@PathVariable long questionId) {
+    public ResponseEntity<List<QuziResponsessResponse>> getQuizResponsesByQuestionId(@PathVariable long questionId) {
         List<QuizResponseDTO> quizResponseDTOList = quizService.getQuizResponsesByQuestionId(questionId);
-        return ResponseEntity.ok(quizResponseDTOList);
+        return ResponseEntity.ok(quizResponseDTOList.stream().map(QuizResponseDTO::dtoToResponse).collect(Collectors.toList()));
     }
 
     @GetMapping("/users/{userId}/progress")
-    public ResponseEntity<List<QuizProgressDTO>> getQuizProgressByUserId(@PathVariable int userId) {
+    public ResponseEntity<List<QuizProgressResponse>> getQuizProgressByUserId(@PathVariable int userId) {
         List<QuizProgressDTO> quizProgressDTOList = quizService.getQuizProgressByUserId(userId);
-        return ResponseEntity.ok(quizProgressDTOList);
+        return ResponseEntity.ok(quizProgressDTOList.stream().map(QuizProgressDTO::dtoToResponse).collect(Collectors.toList()));
     }
 }

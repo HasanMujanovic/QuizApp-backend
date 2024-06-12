@@ -1,8 +1,8 @@
 package com.bitconex.bitquiz.services.impl;
 
-import com.bitconex.bitquiz.architecture.dto.mappers.toEntity.QuizProgressMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizProgressMapper;
 import com.bitconex.bitquiz.repository.QuizProgressRepo;
-import com.bitconex.bitquiz.architecture.dto.AddQuizProgressDto;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.AddQuizProgressDto;
 import com.bitconex.bitquiz.entity.QuizProgress;
 import com.bitconex.bitquiz.entity.User;
 import com.bitconex.bitquiz.repository.UserRepo;

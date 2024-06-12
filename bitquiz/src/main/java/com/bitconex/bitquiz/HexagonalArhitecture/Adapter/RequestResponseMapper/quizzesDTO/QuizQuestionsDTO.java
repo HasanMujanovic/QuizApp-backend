@@ -1,7 +1,7 @@
 package com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO;
 
-import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.QuizQuestionsRequest;
-import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.QuizQuestionsResponse;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.quizzesRequest.QuizQuestionsRequest;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.quizzesResponse.QuizQuestionsResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

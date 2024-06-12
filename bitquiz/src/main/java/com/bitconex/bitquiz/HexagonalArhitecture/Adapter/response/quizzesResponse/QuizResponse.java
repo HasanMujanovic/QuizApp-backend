@@ -1,9 +1,9 @@
-package com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request;
+package com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.quizzesResponse;
 
 import lombok.Data;
 
 @Data
-public class QuizRequest {
+public class QuizResponse {
     private int id;
     private String category;
     private String status;

@@ -4,7 +4,7 @@ import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.A
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.DoneQuizDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.AddDoneQuizRequest;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.AddDoneQuizResponse;
-import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.DoneQuizResponse;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.quizzesResponse.DoneQuizResponse;
 import com.bitconex.bitquiz.services.DoneQuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

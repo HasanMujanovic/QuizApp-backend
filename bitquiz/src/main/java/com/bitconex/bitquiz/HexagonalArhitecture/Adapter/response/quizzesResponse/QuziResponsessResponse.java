@@ -1,4 +1,4 @@
-package com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response;
+package com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.quizzesResponse;
 
 import lombok.Data;
 

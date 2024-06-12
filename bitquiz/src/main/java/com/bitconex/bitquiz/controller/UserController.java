@@ -2,8 +2,8 @@ package com.bitconex.bitquiz.controller;
 
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.usersDTO.UserDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.usersDTO.UserLoginDTO;
-import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.UserLoginRequest;
-import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.UserResponse;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.usersRequest.UserLoginRequest;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.userResponse.UserResponse;
 import com.bitconex.bitquiz.entity.User;
 import com.bitconex.bitquiz.repository.UserRepo;
 import com.bitconex.bitquiz.services.UserService;

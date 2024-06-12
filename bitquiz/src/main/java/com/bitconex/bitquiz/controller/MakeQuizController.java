@@ -3,7 +3,7 @@ package com.bitconex.bitquiz.controller;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.MakeQuizDto;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.MakeQuizRequest;
-import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.QuizRequest;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.quizzesRequest.QuizRequest;
 import com.bitconex.bitquiz.services.DoneQuizService;
 import com.bitconex.bitquiz.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;

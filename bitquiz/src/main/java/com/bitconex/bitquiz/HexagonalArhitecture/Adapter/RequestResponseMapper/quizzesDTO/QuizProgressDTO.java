@@ -1,7 +1,7 @@
 package com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO;
 
-import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.QuizProgressRequest;
-import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.QuizProgressResponse;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.quizzesRequest.QuizProgressRequest;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.quizzesResponse.QuizProgressResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -3,15 +3,17 @@ package com.bitconex.bitquiz.services.impl;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.AddDoneQuizDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.DoneQuizDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toDTO.DoneQuizDTOMapper;
-import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toDTO.QuizDTOMapper;
 import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.DoneQuizMapper;
 import com.bitconex.bitquiz.entity.DoneQuiz;
 import com.bitconex.bitquiz.entity.Quiz;
+import com.bitconex.bitquiz.entity.QuizProgress;
 import com.bitconex.bitquiz.entity.User;
 import com.bitconex.bitquiz.repository.DoneQuizRepo;
+import com.bitconex.bitquiz.repository.QuizProgressRepo;
 import com.bitconex.bitquiz.repository.QuizRepo;
 import com.bitconex.bitquiz.repository.UserRepo;
 import com.bitconex.bitquiz.services.DoneQuizService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,29 +27,42 @@ public class DoneQuizServiceImpl implements DoneQuizService {
 
    private DoneQuizRepo doneQuizRepo;
    private UserRepo userRepo;
-   private QuizDTOMapper quizDTOMapper;
+   private QuizProgressRepo quizProgressRepo;
    private QuizRepo quizRepo;
    private DoneQuizMapper doneQuizMapper;
    private DoneQuizDTOMapper doneQuizDTOMapper;
 
     @Autowired
     public DoneQuizServiceImpl(DoneQuizRepo doneQuizRepo, UserRepo userRepo,
-                               QuizDTOMapper quizDTOMapper, QuizRepo quizRepo,
+                               QuizProgressRepo quizProgressRepo, QuizRepo quizRepo,
                                DoneQuizMapper doneQuizMapper, DoneQuizDTOMapper doneQuizDTOMapper) {
         this.doneQuizRepo = doneQuizRepo;
         this.userRepo = userRepo;
-        this.quizDTOMapper = quizDTOMapper;
+        this.quizProgressRepo = quizProgressRepo;
         this.quizRepo = quizRepo;
         this.doneQuizMapper = doneQuizMapper;
         this.doneQuizDTOMapper = doneQuizDTOMapper;
     }
 
+    @Transactional
     @Override
     public void addDoneQuiz(AddDoneQuizDTO addDoneQuizDTO) {
         DoneQuizDTO doneQuizDTO = addDoneQuizDTO.getDoneQuiz();
 
         User user = userRepo.findByEmail(addDoneQuizDTO.getUser().getEmail());
         Quiz quiz = quizRepo.findById(addDoneQuizDTO.getQuiz().getId());
+
+        System.out.println("Pocelo je");
+
+        List<QuizProgress> quizProgressList = user.getQuizProgresses();
+        for (QuizProgress quizProgress : quizProgressList) {
+            if (quizProgress.getQuizId() == quiz.getId()) {
+                user.removeQuizProgress(quizProgress);
+                System.out.println("Izbrosalo se");
+                break;
+            }
+        }
+
         DoneQuiz doneQuiz = doneQuizMapper.apply(doneQuizDTO);
 
         user.addZavrsenKviz(doneQuiz);

@@ -1,7 +1,9 @@
 package com.bitconex.bitquiz.controller;
 
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.usersDTO.UserDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.quizzesResponse.QuizResponse;
+import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.userResponse.UserResponse;
 import com.bitconex.bitquiz.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +37,12 @@ public class QuizController {
     public ResponseEntity<List<QuizResponse>> getQuizzesByUserId(@PathVariable int userId){
         List<QuizDTO> quizDTOList = quizService.getQuizesMadeByUser(userId);
         return ResponseEntity.ok(quizDTOList.stream().map(QuizDTO::dtoToResponse).collect(Collectors.toList()));
+    }
+
+    @GetMapping("/{quizId}/admin")
+    public ResponseEntity<UserResponse> getAdminByQuizId(@PathVariable int quizId){
+        UserDTO userDTO = quizService.getAdminByQuizId(quizId);
+        return ResponseEntity.ok(UserDTO.dtoToResponse(userDTO));
     }
 
 

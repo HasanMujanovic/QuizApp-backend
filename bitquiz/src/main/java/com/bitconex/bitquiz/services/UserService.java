@@ -9,4 +9,5 @@ public interface UserService {
     UserDTO getUserById(int userId);
     boolean checkIfUserExistsSignUp(String email);
     boolean checkIfUserExistsLogIn(String email, String password);
+    void saveUserStatus(String status, String email);
 }

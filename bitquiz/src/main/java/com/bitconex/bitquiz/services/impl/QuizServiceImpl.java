@@ -1,15 +1,15 @@
 package com.bitconex.bitquiz.services.impl;
 
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.MakeQuizDto;
-import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toDTO.QuizDTOMapper;
-import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizMapper;
-import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizQuestionsMapper;
-import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizResponseMapper;
-import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.UserMapper;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizQuestionsDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizResponseDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.usersDTO.UserDTO;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toDTO.QuizDTOMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toDTO.UserDTOMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizQuestionsMapper;
+import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizResponseMapper;
 import com.bitconex.bitquiz.entity.Quiz;
 import com.bitconex.bitquiz.entity.QuizQuestions;
 import com.bitconex.bitquiz.entity.QuizResponse;
@@ -32,19 +32,19 @@ public class QuizServiceImpl implements QuizService {
    private QuizRepo quizRepo;
    private QuizDTOMapper quizDTOMapper;
    private QuizMapper quizMapper;
-   private UserMapper userMapper;
+   private UserDTOMapper userDTOMapper;
    private QuizQuestionsMapper quizQuestionsMapper;
    private QuizResponseMapper quizResponseMapper;
 
     @Autowired
     public QuizServiceImpl(UserRepo userRepo, QuizRepo quizRepo, QuizDTOMapper quizDTOMapper,
-                           QuizMapper quizMapper, UserMapper userMapper,
+                           QuizMapper quizMapper, UserDTOMapper userDTOMapper,
                            QuizQuestionsMapper quizQuestionsMapper, QuizResponseMapper quizResponseMapper) {
         this.userRepo = userRepo;
         this.quizRepo = quizRepo;
         this.quizDTOMapper = quizDTOMapper;
         this.quizMapper = quizMapper;
-        this.userMapper = userMapper;
+        this.userDTOMapper = userDTOMapper;
         this.quizQuestionsMapper = quizQuestionsMapper;
         this.quizResponseMapper = quizResponseMapper;
     }
@@ -92,7 +92,7 @@ public class QuizServiceImpl implements QuizService {
         quizOptional.setName(quizDTOData.getName());
         quizOptional.setStatus(quizDTOData.getStatus());
 
-            quizRepo.save(quizOptional);
+        quizRepo.save(quizOptional);
     }
 
     @Override
@@ -119,6 +119,14 @@ public class QuizServiceImpl implements QuizService {
         return quizzes.stream()
                 .map(quizDTOMapper)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public UserDTO getAdminByQuizId(int quizId) {
+        Quiz quiz = quizRepo.findById(quizId);
+        User user = quiz.getUser();
+
+        return userDTOMapper.apply(user);
     }
 
 }

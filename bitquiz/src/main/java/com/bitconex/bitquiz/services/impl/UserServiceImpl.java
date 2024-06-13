@@ -50,4 +50,11 @@ public class UserServiceImpl implements UserService {
         User user = userRepo.findByEmail(email);
         return user != null && user.getPassword().equals(password);
     }
+
+    @Override
+    public void saveUserStatus(String status, String email) {
+        User user = userRepo.findByEmail(email);
+        user.setStatus(status);
+        userRepo.save(user);
+    }
 }

@@ -25,7 +25,7 @@ public class DoneQuizDTO {
         doneQuizDTO.setUsername(doneQuizRequest.getUsername());
         doneQuizDTO.setTimeLeft(doneQuizRequest.getTimeLeft());
         doneQuizDTO.setPointsWon(doneQuizRequest.getPointsWon());
-        doneQuizDTO.setUsername(doneQuizRequest.getUsername());
+        doneQuizDTO.setUserIdForSearch(doneQuizRequest.getUserIdForSearch());
 
         return doneQuizDTO;
     }
@@ -38,7 +38,7 @@ public class DoneQuizDTO {
         doneQuizResponse.setUsername(doneQuizDTO.getUsername());
         doneQuizResponse.setTimeLeft(doneQuizDTO.getTimeLeft());
         doneQuizResponse.setPointsWon(doneQuizDTO.getPointsWon());
-        doneQuizResponse.setUsername(doneQuizDTO.getUsername());
+        doneQuizResponse.setUserIdForSearch(doneQuizDTO.getUserIdForSearch());
 
         return doneQuizResponse;
     }

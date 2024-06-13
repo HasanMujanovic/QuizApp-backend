@@ -50,5 +50,11 @@ public class UserController {
         return ResponseEntity.ok(userExists);
     }
 
+    @PostMapping("/save-status/{status}/{email}")
+    public void saveStatus(@PathVariable String status,@PathVariable String email){
+        userService.saveUserStatus(status,email);
+    }
+
+
   
 }

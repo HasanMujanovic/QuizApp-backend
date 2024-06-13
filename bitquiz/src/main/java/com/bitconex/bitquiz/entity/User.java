@@ -46,7 +46,7 @@ public class User {
     @OneToMany(mappedBy = "userEnd", cascade = CascadeType.ALL)
     private List<DoneQuiz> doneQuiz = new ArrayList<>();
 
-    @OneToMany(mappedBy = "userSaved", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "userSaved", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<QuizProgress> quizProgresses = new ArrayList<>();
 
 
@@ -78,6 +78,11 @@ public class User {
             quizProgresses.add(item);
             item.setUserSaved(this);
         }
+    }
+
+    public void removeQuizProgress(QuizProgress quizProgress) {
+        quizProgresses.remove(quizProgress);
+        quizProgress.setUserSaved(null);
     }
 
 

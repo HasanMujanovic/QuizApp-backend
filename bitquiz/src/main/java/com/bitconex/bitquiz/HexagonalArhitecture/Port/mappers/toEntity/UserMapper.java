@@ -19,6 +19,7 @@ public class UserMapper implements Function<UserDTO, User> {
         user.setRoles(userDTO.getRoles());
         user.setLevel(userDTO.getLevel());
         user.setPoints(userDTO.getPoints());
+        user.setStatus(userDTO.getStatus());
         return user;
     }
 }

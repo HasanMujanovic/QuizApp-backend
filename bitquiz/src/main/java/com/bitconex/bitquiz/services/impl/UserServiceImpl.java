@@ -31,6 +31,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDTO getUserById(int userId) {
+        User user = userRepo.findById(userId);
+
+        return userDTOMapper.apply(user);
+    }
+
+    @Override
     public boolean checkIfUserExistsSignUp(String email) {
         User user = userRepo.findByEmail(email);
 

@@ -16,6 +16,7 @@ public class UserDTO {
     private String roles;
     private int level;
     private int points;
+    private String status;
 
     public static UserDTO requestToDto(UserRequest userRequest){
         UserDTO userDTO = new UserDTO();
@@ -25,6 +26,7 @@ public class UserDTO {
         userDTO.setRoles(userRequest.getRoles());
         userDTO.setLevel(userRequest.getLevel());
         userDTO.setPoints(userRequest.getPoints());
+        userDTO.setStatus(userRequest.getStatus());
 
         return userDTO;
     }
@@ -37,6 +39,7 @@ public class UserDTO {
         userResponse.setRoles(userDTO.getRoles());
         userResponse.setLevel(userDTO.getLevel());
         userResponse.setPoints(userDTO.getPoints());
+        userResponse.setStatus(userDTO.getStatus());
 
         return userResponse;
     }

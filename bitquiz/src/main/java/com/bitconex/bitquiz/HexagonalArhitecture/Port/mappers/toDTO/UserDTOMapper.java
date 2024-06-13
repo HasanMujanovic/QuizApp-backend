@@ -17,6 +17,7 @@ public class UserDTOMapper implements Function<User, UserDTO> {
         dto.setRoles(user.getRoles());
         dto.setLevel(user.getLevel());
         dto.setPoints(user.getPoints());
+        dto.setStatus(user.getStatus());
 
         return dto;    }
 }

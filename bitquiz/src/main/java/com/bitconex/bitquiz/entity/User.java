@@ -37,6 +37,9 @@ public class User {
     @Column(name = "points")
     private int points;
 
+    @Column(name = "status")
+    private String status;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Quiz> quizzes = new ArrayList<>();
 

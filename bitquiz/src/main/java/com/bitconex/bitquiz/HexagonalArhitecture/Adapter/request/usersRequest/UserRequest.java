@@ -10,4 +10,5 @@ public class UserRequest {
     private String roles;
     private int level;
     private int points;
+    private String status;
 }

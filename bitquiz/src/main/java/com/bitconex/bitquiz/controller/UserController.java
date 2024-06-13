@@ -31,6 +31,12 @@ public class UserController {
         return ResponseEntity.ok(UserDTO.dtoToResponse(userDTO));
     }
 
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<UserResponse> getUserByEmail(@PathVariable int id) {
+        UserDTO userDTO = userService.getUserById(id);
+        return ResponseEntity.ok(UserDTO.dtoToResponse(userDTO));
+    }
+
     @GetMapping("/exists")
     public ResponseEntity<Boolean> checkIfUserExists(@RequestParam String email) {
         boolean exists = userService.checkIfUserExistsSignUp(email);

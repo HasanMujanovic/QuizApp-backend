@@ -45,10 +45,10 @@ public class Quiz {
 
 
 
-    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<QuizQuestions> questions = new ArrayList<>();
 
-    @OneToMany(mappedBy = "quizEnd", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "quizEnd", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DoneQuiz> doneQuiz = new ArrayList<>();
 
 

@@ -10,13 +10,12 @@ import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toDTO.UserDTOMappe
 import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizMapper;
 import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizQuestionsMapper;
 import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizResponseMapper;
-import com.bitconex.bitquiz.entity.Quiz;
-import com.bitconex.bitquiz.entity.QuizQuestions;
-import com.bitconex.bitquiz.entity.QuizResponse;
-import com.bitconex.bitquiz.entity.User;
+import com.bitconex.bitquiz.entity.*;
+import com.bitconex.bitquiz.repository.CategoryRepository;
 import com.bitconex.bitquiz.repository.QuizRepo;
 import com.bitconex.bitquiz.repository.UserRepo;
 import com.bitconex.bitquiz.services.QuizService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,11 +34,13 @@ public class QuizServiceImpl implements QuizService {
    private UserDTOMapper userDTOMapper;
    private QuizQuestionsMapper quizQuestionsMapper;
    private QuizResponseMapper quizResponseMapper;
+   private CategoryRepository categoryRepository;
 
     @Autowired
     public QuizServiceImpl(UserRepo userRepo, QuizRepo quizRepo, QuizDTOMapper quizDTOMapper,
                            QuizMapper quizMapper, UserDTOMapper userDTOMapper,
-                           QuizQuestionsMapper quizQuestionsMapper, QuizResponseMapper quizResponseMapper) {
+                           QuizQuestionsMapper quizQuestionsMapper, QuizResponseMapper quizResponseMapper,
+                           CategoryRepository categoryRepository) {
         this.userRepo = userRepo;
         this.quizRepo = quizRepo;
         this.quizDTOMapper = quizDTOMapper;
@@ -47,6 +48,7 @@ public class QuizServiceImpl implements QuizService {
         this.userDTOMapper = userDTOMapper;
         this.quizQuestionsMapper = quizQuestionsMapper;
         this.quizResponseMapper = quizResponseMapper;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -56,6 +58,15 @@ public class QuizServiceImpl implements QuizService {
 
         Quiz quiz = quizMapper.apply(quizDto);
         User user = userRepo.findByEmail(userDto.getEmail());
+
+        Category category1 = categoryRepository.findByName(quiz.getCategory());
+
+        if (category1 == null){
+            Category category = new Category();
+            category.setName(quiz.getCategory());
+
+            categoryRepository.save(category);
+        }
 
         List<QuizQuestionsDTO> quizQuestionsDtoList = makeQuizDto.getQuizQuestions();
         List<QuizResponseDTO[]> quizResponseDtoList = makeQuizDto.getQuizResponse();
@@ -127,6 +138,32 @@ public class QuizServiceImpl implements QuizService {
         User user = quiz.getUser();
 
         return userDTOMapper.apply(user);
+    }
+
+    @Transactional
+    @Override
+    public void deleteQuiz(int quizId, int userId) {
+        User user = userRepo.findById(userId);
+        Quiz quiz = quizRepo.findById(quizId);
+
+        user.removeQuiz(quiz);
+    }
+
+    @Override
+    public void likeingQuiz(int quizId) {
+        Quiz quiz = quizRepo.findById(quizId);
+        quiz.setLikes(quiz.getLikes() + 1);
+        quizRepo.save(quiz);
+    }
+
+    @Override
+    public List<QuizDTO> filteredQuizes(String category, String difficulty) {
+        List<Quiz> quizList = quizRepo.findByCategoryAndDifficulty(category, difficulty);
+        System.out.println(category);
+        System.out.println(difficulty);
+        return quizList.stream()
+                .map(quizDTOMapper)
+                .collect(Collectors.toList());
     }
 
 }

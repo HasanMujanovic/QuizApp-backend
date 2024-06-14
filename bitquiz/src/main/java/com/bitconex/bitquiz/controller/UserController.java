@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping("/bit/user")
 public class UserController {
@@ -55,6 +58,10 @@ public class UserController {
         userService.saveUserStatus(status,email);
     }
 
+    @GetMapping("/sorted")
+    public ResponseEntity<List<UserResponse>> getTop5UsersSortedByLevelAndPoints() {
+        List<UserDTO> users = userService.getTop5UsersSortedByLevelAndPoints();
+        return ResponseEntity.ok(users.stream().map(UserDTO::dtoToResponse).collect(Collectors.toList()));
+    }
 
-  
 }

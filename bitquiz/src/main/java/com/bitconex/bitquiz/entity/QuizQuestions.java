@@ -35,7 +35,7 @@ public class QuizQuestions {
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
 
-    @OneToMany(mappedBy = "questions", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "questions", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<QuizResponse> responses = new ArrayList<>();
 
     public void add(QuizResponse[] quizResponse) {

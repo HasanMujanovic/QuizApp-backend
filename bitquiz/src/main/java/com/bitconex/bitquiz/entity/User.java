@@ -40,7 +40,7 @@ public class User {
     @Column(name = "status")
     private String status;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Quiz> quizzes = new ArrayList<>();
 
     @OneToMany(mappedBy = "userEnd", cascade = CascadeType.ALL)
@@ -80,9 +80,14 @@ public class User {
         }
     }
 
-    public void removeQuizProgress(QuizProgress quizProgress) {
-        quizProgresses.remove(quizProgress);
-        quizProgress.setUserSaved(null);
+    public void removeQuizProgress(QuizProgress progress) {
+        quizProgresses.remove(progress);
+        progress.setUserSaved(null);
+    }
+
+    public void removeQuiz(Quiz quiz) {
+        quizzes.remove(quiz);
+        quiz.setUser(null);
     }
 
 

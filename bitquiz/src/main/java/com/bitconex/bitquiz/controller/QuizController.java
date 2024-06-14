@@ -7,10 +7,7 @@ import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.userResponse.U
 import com.bitconex.bitquiz.services.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,5 +42,23 @@ public class QuizController {
         return ResponseEntity.ok(UserDTO.dtoToResponse(userDTO));
     }
 
+    @DeleteMapping("/{quizId}/user/{userId}/delete")
+    public void deleteQuiz(@PathVariable int quizId, @PathVariable int userId){
+        quizService.deleteQuiz(quizId,userId);
+    }
+
+
+    @PostMapping("/{quizId}/like")
+    public void likeQuiz(@PathVariable int quizId){
+        quizService.likeingQuiz(quizId);
+    }
+
+    @GetMapping("/filtered")
+    public ResponseEntity<List<QuizResponse>> getFilteredQuizzes(
+            @RequestParam(value = "category", required = false) String category,
+            @RequestParam(value = "difficulty", required = false) String difficulty) {
+        List<QuizDTO> quizDTOList = quizService.filteredQuizes(category, difficulty);
+        return ResponseEntity.ok(quizDTOList.stream().map(QuizDTO::dtoToResponse).collect(Collectors.toList()));
+    }
 
 }

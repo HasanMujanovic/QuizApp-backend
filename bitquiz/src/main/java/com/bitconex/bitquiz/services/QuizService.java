@@ -13,5 +13,8 @@ public interface QuizService {
     QuizDTO getQuizById(int quizId);
     List<QuizDTO>getQuizesMadeByUser(int userId);
     UserDTO getAdminByQuizId(int quizId);
+    void deleteQuiz(int quizId, int userId);
+    void likeingQuiz(int quizId);
+    List<QuizDTO> filteredQuizes(String category, String difficulty);
 
 }

@@ -52,16 +52,16 @@ public class DoneQuizServiceImpl implements DoneQuizService {
         User user = userRepo.findByEmail(addDoneQuizDTO.getUser().getEmail());
         Quiz quiz = quizRepo.findById(addDoneQuizDTO.getQuiz().getId());
 
-        System.out.println("Pocelo je");
-
         List<QuizProgress> quizProgressList = user.getQuizProgresses();
         for (QuizProgress quizProgress : quizProgressList) {
             if (quizProgress.getQuizId() == quiz.getId()) {
                 user.removeQuizProgress(quizProgress);
-                System.out.println("Izbrosalo se");
                 break;
             }
         }
+
+        user.setPoints(user.getPoints() + quiz.getPoints());
+        quiz.setDoneIt(quiz.getDoneIt() + 1);
 
         DoneQuiz doneQuiz = doneQuizMapper.apply(doneQuizDTO);
 

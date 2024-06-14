@@ -44,8 +44,4 @@ public class DoneQuiz {
     @JsonIgnore
     private Quiz quizEnd;
 
-
-
-
-
 }

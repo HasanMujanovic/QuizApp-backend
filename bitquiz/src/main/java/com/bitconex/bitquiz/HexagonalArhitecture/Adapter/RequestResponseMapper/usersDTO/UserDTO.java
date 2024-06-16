@@ -3,12 +3,14 @@ package com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.usersRequest.UserRequest;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.userResponse.UserResponse;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class UserDTO {
     private int id;
     private String name;

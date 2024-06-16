@@ -1,16 +1,16 @@
 package com.bitconex.bitquiz.services;
 
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.usersDTO.UserDTO;
-import com.bitconex.bitquiz.entity.User;
+import com.bitconex.bitquiz.PasswordSecurity.CredentialsDTO;
+import com.bitconex.bitquiz.PasswordSecurity.RegisterDTO;
 
 import java.util.List;
 
 public interface UserService {
-    void saveUser(User user);
     UserDTO getUser(String email);
     UserDTO getUserById(int userId);
-    boolean checkIfUserExistsSignUp(String email);
-    boolean checkIfUserExistsLogIn(String email, String password);
     void saveUserStatus(String status, String email);
     List<UserDTO> getTop5UsersSortedByLevelAndPoints();
+    UserDTO loginAuth(CredentialsDTO credentialsDTO);
+    UserDTO register(RegisterDTO registerDTO);
 }

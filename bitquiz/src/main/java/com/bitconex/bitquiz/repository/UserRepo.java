@@ -9,7 +9,5 @@ import java.util.List;
 public interface UserRepo extends JpaRepository<User, Integer> {
     User findByEmail(String email);
     User findById(int id);
-    Boolean existsByEmail(String email);
     List<User> findByOrderByLevelDescPointsDesc(Pageable pageable);
-
 }

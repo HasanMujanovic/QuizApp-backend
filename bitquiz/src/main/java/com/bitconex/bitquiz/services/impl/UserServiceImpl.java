@@ -4,8 +4,6 @@ import com.bitconex.bitquiz.ErrorMessage.AppException;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.usersDTO.UserDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toDTO.UserDTOMapper;
 import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.UserMapper;
-import com.bitconex.bitquiz.PasswordSecurity.CredentialsDTO;
-import com.bitconex.bitquiz.PasswordSecurity.RegisterDTO;
 import com.bitconex.bitquiz.entity.User;
 import com.bitconex.bitquiz.repository.UserRepo;
 import com.bitconex.bitquiz.services.UserService;
@@ -62,10 +60,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO loginAuth(CredentialsDTO credentialsDTO) {
-        User user = userRepo.findByEmail(credentialsDTO.email());
+    public UserDTO loginAuth(String email, String password) {
+        User user = userRepo.findByEmail(email);
         if (user != null){
-            if (passwordEncoder.matches(credentialsDTO.password(), user.getPassword())){
+            if (passwordEncoder.matches(password, user.getPassword())){
                 return userDTOMapper.apply(user);
             }
         }
@@ -74,16 +72,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO register(RegisterDTO registerDTO) {
-        System.out.println(registerDTO);
-        UserDTO userDTO = registerDTO.getUserDTO();
+    public UserDTO register(UserDTO userDTO, String password) {
         User user = userRepo.findByEmail(userDTO.getEmail());
 
         if (user != null){
             throw new AppException("User already exists", HttpStatus.BAD_REQUEST);
         }
-        User user1 = userMapper.apply(registerDTO.getUserDTO());
-        user1.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
+        User user1 = userMapper.apply(userDTO);
+        user1.setPassword(passwordEncoder.encode(password));
 
         User user2 = userRepo.save(user1);
         return userDTOMapper.apply(user2);

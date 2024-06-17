@@ -2,6 +2,8 @@ package com.bitconex.bitquiz.controller;
 
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.usersDTO.UserDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.userResponse.UserResponse;
+import com.bitconex.bitquiz.PasswordSecurity.CredentialsDTO;
+import com.bitconex.bitquiz.PasswordSecurity.RegisterDTO;
 import com.bitconex.bitquiz.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,14 +42,14 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserResponse> login(@RequestBody String email, String password){
-        UserDTO user = userService.loginAuth(email, password);
+    public ResponseEntity<UserResponse> login(@RequestBody CredentialsDTO credentialsDTO){
+        UserDTO user = userService.loginAuth(credentialsDTO);
         return ResponseEntity.ok(UserDTO.dtoToResponse(user));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserResponse> register(@RequestBody UserDTO userDTO, @RequestBody String password){
-        UserDTO user = userService.register(userDTO ,password);
+    public ResponseEntity<UserResponse> register(@RequestBody RegisterDTO registerDTO){
+        UserDTO user = userService.register(registerDTO);
         return ResponseEntity.ok(UserDTO.dtoToResponse(user));
     }
 

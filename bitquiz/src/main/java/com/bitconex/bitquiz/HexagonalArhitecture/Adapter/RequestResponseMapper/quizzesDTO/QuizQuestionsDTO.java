@@ -3,6 +3,7 @@ package com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.quizzesRequest.QuizQuestionsRequest;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.quizzesResponse.QuizQuestionsResponse;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

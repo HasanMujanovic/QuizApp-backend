@@ -7,10 +7,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
+import java.util.Optional;
 
 @RepositoryRestResource(path = "quizes")
 public interface QuizRepo extends JpaRepository<Quiz, Integer> {
-    Quiz findById(int id);
+    Optional<Quiz> findById(int id);
 
     @Query("SELECT q FROM Quiz q WHERE "
             + "(:category IS NULL OR q.category = :category) AND "

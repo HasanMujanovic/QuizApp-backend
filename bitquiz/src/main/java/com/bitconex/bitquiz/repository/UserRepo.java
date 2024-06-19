@@ -5,9 +5,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepo extends JpaRepository<User, Integer> {
-    User findByEmail(String email);
-    User findById(int id);
+   Optional<User> findByEmail(String email);
+   Optional<User> findById(int id);
     List<User> findByOrderByLevelDescPointsDesc(Pageable pageable);
 }

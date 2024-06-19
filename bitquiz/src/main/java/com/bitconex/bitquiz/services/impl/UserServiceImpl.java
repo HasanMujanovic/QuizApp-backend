@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,21 +38,35 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO getUser(String email) {
-        User user = userRepo.findByEmail(email);
-        return userDTOMapper.apply(user);
+        Optional<User> userOptional = userRepo.findByEmail(email);
+        if (userOptional.isPresent()){
+            User user = userOptional.get();
+            return userDTOMapper.apply(user);
+        } else {
+            throw new AppException("Cannot find user", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
     public UserDTO getUserById(int userId) {
-        User user = userRepo.findById(userId);
-        return userDTOMapper.apply(user);
+        Optional<User> userOptional = userRepo.findById(userId);
+        if (userOptional.isPresent()){
+            User user = userOptional.get();
+            return userDTOMapper.apply(user);
+        } else {
+            throw new AppException("Cannot find user", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
     public void saveUserStatus(String status, String email) {
-        User user = userRepo.findByEmail(email);
-        user.setStatus(status);
-        userRepo.save(user);
+        Optional<User> userOptional = userRepo.findByEmail(email);
+        if (userOptional.isPresent()){
+            User user = userOptional.get();
+            user.setStatus(status);
+            userRepo.save(user);
+        }
+
     }
 
     @Override
@@ -63,23 +78,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO loginAuth(CredentialsDTO credentialsDTO) {
-        User user = userRepo.findByEmail(credentialsDTO.email());
-        if (user != null){
+        Optional<User> userOptional = userRepo.findByEmail(credentialsDTO.email());
+        if (userOptional.isPresent()){
+            User user = userOptional.get();
             if (passwordEncoder.matches(credentialsDTO.password(), user.getPassword())){
                 return userDTOMapper.apply(user);
             }
         }
-        throw new AppException("Invalid password", HttpStatus.BAD_REQUEST);
+
+        throw new AppException("Invalid credentials", HttpStatus.BAD_REQUEST);
 
     }
 
     @Override
     public UserDTO register(RegisterDTO registerDTO) {
-        System.out.println(registerDTO);
         UserDTO userDTO = registerDTO.getUserDTO();
-        User user = userRepo.findByEmail(userDTO.getEmail());
-
-        if (user != null){
+        Optional<User> userOptional = userRepo.findByEmail(registerDTO.getUserDTO().getEmail());
+        if (userOptional.isPresent()){
             throw new AppException("User already exists", HttpStatus.BAD_REQUEST);
         }
         User user1 = userMapper.apply(registerDTO.getUserDTO());

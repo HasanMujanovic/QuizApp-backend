@@ -2,6 +2,7 @@ package com.bitconex.bitquiz.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "quiz_response")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Data
 
 public class QuizResponse {

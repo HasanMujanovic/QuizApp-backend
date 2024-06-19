@@ -1,5 +1,6 @@
 package com.bitconex.bitquiz.services.impl;
 
+import com.bitconex.bitquiz.ErrorMessage.AppException;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.AddDoneQuizDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.DoneQuizDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toDTO.DoneQuizDTOMapper;
@@ -17,9 +18,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,10 +52,24 @@ public class DoneQuizServiceImpl implements DoneQuizService {
     public void addDoneQuiz(AddDoneQuizDTO addDoneQuizDTO) {
         DoneQuizDTO doneQuizDTO = addDoneQuizDTO.getDoneQuiz();
 
-        User user = userRepo.findByEmail(addDoneQuizDTO.getUser().getEmail());
-        Quiz quiz = quizRepo.findById(addDoneQuizDTO.getQuiz().getId());
+        Optional<User> userOptional = userRepo.findByEmail(addDoneQuizDTO.getUser().getEmail());
+        User user = new User();
 
+        if (userOptional.isPresent()){
+            user = userOptional.get();
+        } else {
+            throw new AppException("Cannot find user", HttpStatus.BAD_REQUEST);
+        }
+
+        Optional<Quiz> quizOptional = quizRepo.findById(addDoneQuizDTO.getQuiz().getId());
+        Quiz quiz = new Quiz();
         List<QuizProgress> quizProgressList = user.getQuizProgresses();
+
+        if (quizOptional.isPresent()){
+            quiz = quizOptional.get();
+        } else {
+            throw new AppException("Cannot find Quiz", HttpStatus.BAD_REQUEST);
+        }
         for (QuizProgress quizProgress : quizProgressList) {
             if (quizProgress.getQuizId() == quiz.getId()) {
                 user.removeQuizProgress(quizProgress);
@@ -81,7 +98,14 @@ public class DoneQuizServiceImpl implements DoneQuizService {
 
     @Override
     public List<DoneQuizDTO> getDoneQuizzesByUserId(int userId) {
-        User user = userRepo.findById(userId);
+        Optional<User> userOptional = userRepo.findById(userId);
+        User user = new User();
+
+        if (userOptional.isPresent()){
+            user = userOptional.get();
+        } else {
+            throw new AppException("Cannot find user", HttpStatus.BAD_REQUEST);
+        }
         List<DoneQuiz> doneQuizzes = user.getDoneQuiz();
 
         return doneQuizzes.stream()

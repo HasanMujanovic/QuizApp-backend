@@ -1,5 +1,6 @@
 package com.bitconex.bitquiz.services.impl;
 
+import com.bitconex.bitquiz.ErrorMessage.AppException;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizProgressDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizQuestionsDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizResponseDTO;
@@ -12,9 +13,11 @@ import com.bitconex.bitquiz.repository.QuizRepo;
 import com.bitconex.bitquiz.repository.UserRepo;
 import com.bitconex.bitquiz.services.PlayingQuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,13 +43,18 @@ public class PlayingQuizServiceImpl implements PlayingQuizService {
 
     @Override
     public List<QuizQuestionsDTO> getQuizQuestionsByQuizId(int quizId) {
-        Quiz quiz = quizRepo.findById(quizId);
 
-        List<QuizQuestions> quizQuestions = quiz.getQuestions();
+        Optional<Quiz> quizOptional = quizRepo.findById(quizId);
 
-        return quizQuestions.stream()
-                .map(quizQuestionsDTOMapper)
-                .collect(Collectors.toList());
+        if (quizOptional.isPresent()){
+            Quiz quiz = quizOptional.get();
+            List<QuizQuestions> quizQuestions = quiz.getQuestions();
+            return quizQuestions.stream()
+                    .map(quizQuestionsDTOMapper)
+                    .collect(Collectors.toList());
+        } else {
+            throw new AppException("Couldn't find Quiz", HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
@@ -63,7 +71,14 @@ public class PlayingQuizServiceImpl implements PlayingQuizService {
 
     @Override
     public List<QuizProgressDTO> getQuizProgressByUserId(int userId) {
-        User user = userRepo.findById(userId);
+        Optional<User> userOptional = userRepo.findById(userId);
+        User user = new User();
+
+        if (userOptional.isPresent()){
+            user = userOptional.get();
+        } else {
+            throw new AppException("Cannot find user", HttpStatus.BAD_REQUEST);
+        }
 
         List<QuizProgress> quizProgressList = user.getQuizProgresses();
 

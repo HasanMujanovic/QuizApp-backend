@@ -1,7 +1,9 @@
 package com.bitconex.bitquiz.ErrorMessage;
 
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 
+@Data
 public class AppException extends RuntimeException {
     private final HttpStatus httpStatus;
 

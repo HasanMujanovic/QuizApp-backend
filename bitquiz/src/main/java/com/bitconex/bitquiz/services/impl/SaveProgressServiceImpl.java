@@ -1,5 +1,6 @@
 package com.bitconex.bitquiz.services.impl;
 
+import com.bitconex.bitquiz.ErrorMessage.AppException;
 import com.bitconex.bitquiz.HexagonalArhitecture.Port.mappers.toEntity.QuizProgressMapper;
 import com.bitconex.bitquiz.repository.QuizProgressRepo;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.AddQuizProgressDto;
@@ -8,6 +9,7 @@ import com.bitconex.bitquiz.entity.User;
 import com.bitconex.bitquiz.repository.UserRepo;
 import com.bitconex.bitquiz.services.SaveProgressService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -28,7 +30,14 @@ public class SaveProgressServiceImpl implements SaveProgressService {
 
     @Override
     public void saveProgress(AddQuizProgressDto addQuizProgressDto) {
-        User user = userRepo.findByEmail(addQuizProgressDto.getUser().getEmail());
+        Optional<User> userOptional = userRepo.findByEmail(addQuizProgressDto.getUser().getEmail());
+        User user = new User();
+
+        if (userOptional.isPresent()){
+            user = userOptional.get();
+        } else {
+            throw new AppException("Cannot find user", HttpStatus.BAD_REQUEST);
+        }
         QuizProgress quizProgress = quizProgressMapper.apply(addQuizProgressDto.getQuizProgress());
 
         Optional<QuizProgress> existingProgressOpt = quizProgressRepo.findByUserSavedAndQuizId(user, quizProgress.getQuizId());
@@ -45,7 +54,4 @@ public class SaveProgressServiceImpl implements SaveProgressService {
             quizProgressRepo.save(quizProgress);
         }
     }
-
-
-
 }

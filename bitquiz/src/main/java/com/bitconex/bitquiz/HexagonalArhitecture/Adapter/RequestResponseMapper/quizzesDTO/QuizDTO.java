@@ -3,11 +3,13 @@ package com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.quizzesRequest.QuizRequest;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.quizzesResponse.QuizResponse;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Data
 public class QuizDTO {
     private int id;

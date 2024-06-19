@@ -1,5 +1,6 @@
 package com.bitconex.bitquiz.services.impl;
 
+import com.bitconex.bitquiz.ErrorMessage.AppException;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.MakeQuizDto;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.quizzesDTO.QuizQuestionsDTO;
@@ -17,10 +18,12 @@ import com.bitconex.bitquiz.repository.UserRepo;
 import com.bitconex.bitquiz.services.QuizService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -57,7 +60,14 @@ public class QuizServiceImpl implements QuizService {
         UserDTO userDto = makeQuizDto.getUser();
 
         Quiz quiz = quizMapper.apply(quizDto);
-        User user = userRepo.findByEmail(userDto.getEmail());
+        Optional<User> userOptional = userRepo.findByEmail(userDto.getEmail());
+        User user = new User();
+        if (userOptional.isPresent()){
+            user = userOptional.get();
+        } else {
+            throw new AppException("Couldn't find User", HttpStatus.BAD_REQUEST);
+
+        }
 
         Category category1 = categoryRepository.findByName(quiz.getCategory());
 
@@ -96,14 +106,19 @@ public class QuizServiceImpl implements QuizService {
     @Override
     public void editQuiz(QuizDTO quizDTOData) {
 
-       Quiz quizOptional = quizRepo.findById(quizDTOData.getId());
+      Optional<Quiz> quizOptional = quizRepo.findById(quizDTOData.getId());
 
-        quizOptional.setCategory(quizDTOData.getCategory());
-        quizOptional.setDifficulty(quizDTOData.getDifficulty());
-        quizOptional.setName(quizDTOData.getName());
-        quizOptional.setStatus(quizDTOData.getStatus());
+      if(quizOptional.isPresent()){
+          Quiz quiz = quizOptional.get();
+          quiz.setCategory(quizDTOData.getCategory());
+          quiz.setDifficulty(quizDTOData.getDifficulty());
+          quiz.setName(quizDTOData.getName());
+          quiz.setStatus(quizDTOData.getStatus());
 
-        quizRepo.save(quizOptional);
+          quizRepo.save(quiz);
+      } else {
+          throw new AppException("Couldn't find Quiz", HttpStatus.BAD_REQUEST);
+      }
     }
 
     @Override
@@ -116,14 +131,28 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public QuizDTO getQuizById(int quizId) {
-        Quiz quizOptional = quizRepo.findById(quizId);
+       Optional<Quiz> quizOptional = quizRepo.findById(quizId);
 
-        return quizDTOMapper.apply(quizOptional);
+       if (quizOptional.isPresent()){
+           Quiz quiz = quizOptional.get();
+           return quizDTOMapper.apply(quiz);
+       } else {
+           throw new AppException("Couldn't find Quiz", HttpStatus.BAD_REQUEST);
+
+       }
+
     }
 
     @Override
     public List<QuizDTO> getQuizesMadeByUser(int userId) {
-        User user = userRepo.findById(userId);
+        Optional<User> userOptional = userRepo.findById(userId);
+        User user = new User();
+        if (userOptional.isPresent()){
+            user = userOptional.get();
+        } else {
+            throw new AppException("Couldn't find User", HttpStatus.BAD_REQUEST);
+
+        }
 
         List<Quiz> quizzes = user.getQuizzes();
 
@@ -134,33 +163,53 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public UserDTO getAdminByQuizId(int quizId) {
-        Quiz quiz = quizRepo.findById(quizId);
-        User user = quiz.getUser();
+        Optional<Quiz> quizOptional = quizRepo.findById(quizId);
 
-        return userDTOMapper.apply(user);
+        if (quizOptional.isPresent()){
+            Quiz quiz = quizOptional.get();
+            User user = quiz.getUser();
+
+            return userDTOMapper.apply(user);
+        } else {
+            throw new AppException("Couldn't find Quiz", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @Transactional
     @Override
     public void deleteQuiz(int quizId, int userId) {
-        User user = userRepo.findById(userId);
-        Quiz quiz = quizRepo.findById(quizId);
+        Optional<User> userOptional = userRepo.findById(userId);
 
-        user.removeQuiz(quiz);
+        Optional<Quiz> quizOptional = quizRepo.findById(quizId);
+
+        if (quizOptional.isPresent() && userOptional.isPresent()){
+            Quiz quiz = quizOptional.get();
+            User user = userOptional.get();
+            user.removeQuiz(quiz);
+        } else {
+            throw new AppException("Couldn't find Quiz or User", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @Override
     public void likeingQuiz(int quizId) {
-        Quiz quiz = quizRepo.findById(quizId);
-        quiz.setLikes(quiz.getLikes() + 1);
-        quizRepo.save(quiz);
+        Optional<Quiz> quizOptional = quizRepo.findById(quizId);
+
+        if(quizOptional.isPresent()){
+            Quiz quiz = quizOptional.get();
+            quiz.setLikes(quiz.getLikes() + 1);
+            quizRepo.save(quiz);
+        } else {
+            throw new AppException("Couldn't find Quiz", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @Override
     public List<QuizDTO> filteredQuizes(String category, String difficulty) {
         List<Quiz> quizList = quizRepo.findByCategoryAndDifficulty(category, difficulty);
-        System.out.println(category);
-        System.out.println(difficulty);
         return quizList.stream()
                 .map(quizDTOMapper)
                 .collect(Collectors.toList());

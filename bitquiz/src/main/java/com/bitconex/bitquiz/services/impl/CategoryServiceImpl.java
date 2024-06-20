@@ -14,11 +14,14 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    @Autowired
-    CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
+    private CategoryDTOMapper categoryDTOMapper;
 
     @Autowired
-    CategoryDTOMapper categoryDTOMapper;
+    public CategoryServiceImpl(CategoryRepository categoryRepository, CategoryDTOMapper categoryDTOMapper) {
+        this.categoryRepository = categoryRepository;
+        this.categoryDTOMapper = categoryDTOMapper;
+    }
 
     @Override
     public List<CategoryDTO> getAllCategories() {

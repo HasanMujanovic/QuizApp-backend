@@ -27,7 +27,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Autowired
-    public UserServiceImpl(UserRepo userRepo, UserDTOMapper userDTOMapper, PasswordEncoder passwordEncoder, UserMapper userMapper) {
+    public UserServiceImpl(UserRepo userRepo, UserDTOMapper userDTOMapper,
+                           PasswordEncoder passwordEncoder, UserMapper userMapper) {
         this.userRepo = userRepo;
         this.userDTOMapper = userDTOMapper;
         this.passwordEncoder = passwordEncoder;

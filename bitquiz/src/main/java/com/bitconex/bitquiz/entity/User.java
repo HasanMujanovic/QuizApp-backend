@@ -42,7 +42,7 @@ public class User {
     @Column(name = "status")
     private String status;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
     private List<Quiz> quizzes = new ArrayList<>();
 
     @OneToMany(mappedBy = "userEnd", cascade = CascadeType.ALL)

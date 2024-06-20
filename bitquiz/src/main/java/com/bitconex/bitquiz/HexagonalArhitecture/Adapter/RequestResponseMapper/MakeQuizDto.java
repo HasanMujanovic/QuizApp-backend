@@ -6,13 +6,17 @@ import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.q
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.RequestResponseMapper.usersDTO.UserDTO;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.request.MakeQuizRequest;
 import com.bitconex.bitquiz.HexagonalArhitecture.Adapter.response.MakeQuizResponse;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class MakeQuizDto {
     UserDTO user;
     QuizDTO quiz;

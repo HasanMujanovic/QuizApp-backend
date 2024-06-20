@@ -78,6 +78,16 @@ public class DoneQuizServiceImpl implements DoneQuizService {
         }
 
         user.setPoints(user.getPoints() + quiz.getPoints());
+        int currentLevel = user.getLevel();
+        int requiredPoints = 50 + (currentLevel + 1);
+
+        while (user.getPoints() >= requiredPoints && currentLevel < 7) {
+            user.setPoints(user.getPoints() - requiredPoints);
+            currentLevel++;
+        }
+
+        user.setLevel(currentLevel);
+
         quiz.setDoneIt(quiz.getDoneIt() + 1);
 
         DoneQuiz doneQuiz = doneQuizMapper.apply(doneQuizDTO);

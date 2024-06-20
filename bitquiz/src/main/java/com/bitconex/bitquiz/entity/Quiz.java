@@ -55,7 +55,7 @@ public class Quiz {
 
 
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
 
